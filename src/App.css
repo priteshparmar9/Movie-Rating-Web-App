@@ -3,8 +3,17 @@
   color: white;
   font-family: sans-serif;
   background-image: url("images/bg.gif");
-  background-repeat: no-repeat;
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
   /* background-image: url(https://giphy.com/gifs/pink-glow-turbulence-eJoZAwRN9OI5QjthIE); */
+}
+
+.error{
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
