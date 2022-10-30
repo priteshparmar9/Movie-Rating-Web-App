@@ -7,10 +7,16 @@ function NavBar() {
             <nav className="navbar navbar-expand-lg navbar-light bg-dark">
                 <div className="tags">
                     <a href="/movie/popular">
-                        <button type="button" className="btn btn-primary mx-auto">Popular</button>
+                        <button type="button" className="btn btn-primary mx-auto">Login</button>
                     </a>
                     <a href="/movie/toprated">
-                        <button type="button" className="btn btn-primary ml-2">Top Rated</button>
+                        <button type="button" className="btn btn-primary ml-2">Signup</button>
+                    </a>
+                    <a href="/addmovie">
+                        <button type="button" className="btn btn-primary ml-2">Add Movie</button>
+                    </a>
+                    <a href="/addcast">
+                        <button type="button" className="btn btn-primary ml-2">Add Cast</button>
                     </a>
                     {/* <button type="button" className="btn btn-primary mx-auto">Upcoming</button> */}
                 </div>

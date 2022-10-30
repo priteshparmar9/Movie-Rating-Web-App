@@ -10,6 +10,7 @@ import Login from './pages/login';
 import AddMovie from './AddMovie';
 import Movie from './Movie';
 import Error from './error';
+import AddCast from './AddCast';
 
 
 function App(){
@@ -22,10 +23,12 @@ function App(){
       <BrowserRouter>
       <Routes>
 
-      
+          <Route index element={<Login />}></Route>
           {/* <Route index element={<Home />} /> */}
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="addMovie" element={<AddMovie />} />
+          <Route path="addCast" element={<AddCast />} />
           <Route path="*" element={<Error />} />
       
       </Routes>

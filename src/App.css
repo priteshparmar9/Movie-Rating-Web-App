@@ -1,14 +1,14 @@
-.App {
-  /* background-color: blue; */
+/*.App {
+   background-color: blue; 
   color: white;
   font-family: sans-serif;
-  background-image: url("images/bg.gif");
+  background-image: url("images/wallpaper.gif");
   height: 100%;
 
-  /* Center and scale the image nicely */
-  /* background-position: center; */
-  /* background-repeat: no-repeat; */
-  /* background-image: url(https://giphy.com/gifs/pink-glow-turbulence-eJoZAwRN9OI5QjthIE); */
+ Center and scale the image nicely 
+  background-position: center;
+  background-repeat: no-repeat;
+ background-image: url(https://giphy.com/gifs/pink-glow-turbulence-eJoZAwRN9OI5QjthIE); 
 }
 
 .error{
@@ -17,3 +17,8 @@
 }
 
 
+.dropdown-react{
+  color: black;
+}*/
+
+@import url('https://cdn.syncfusion.com/ej2/bootstrap5.css');

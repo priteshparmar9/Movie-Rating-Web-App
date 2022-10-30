@@ -11,6 +11,7 @@ function Signup() {
         re_password: "",
         dob: "",
     })
+    const [ResponseStatus, setResponseStatus] = useState();
 
     const handler = e => {
         const { name, value } = e.target;
@@ -20,29 +21,27 @@ function Signup() {
         })
         console.log(user);
     }
-
-    var status = (state1) => {
-        if(state1=="success"){
-            swal('Great!','Login Successful!!!','success');
-        }
-        else{
-            swal('Opps', 'Failed!!!', 'warning');
-        }
-    }
-    const try_login = () => {
+    const try_login = async () => {
         if(user.username && user.dob && user.password === user.re_password && user.password && user.email){
             
-            const user_check_url = `http://localhost:9000/user/${user.username.toString()}`;
-            var status;
-            axios.get(user_check_url).then(res=>status = res.data);
-            console.log(status);
-            if(status=='fail'||!status){
+            // const user_check_url = `http://localhost:9000/user/${user.username.toString()}`;
+            // console.log(user_check_url);
+            // await axios.get(user_check_url).then(res=>setResponseStatus(res.data));
+            // console.log(ResponseStatus);
+            // if(ResponseStatus=='fail'||!ResponseStatus){
                 const url = 'http://localhost:9000/user/signup';
                 const {username, email, dob, password} = user
-                axios.post(url, user).then(res=>status(res.data));
-            }else{
-                swal('Opps!', 'Username already exists!!', 'warning');
-            }
+                await axios.post(url, user).then(res=>setResponseStatus(res.data));
+                swal('Great!', ResponseStatus, 'success');
+                // if(ResponseStatus=="success"){
+                //     swal('Great!','Signup Successful!!!','success');
+                // }
+                // else{
+                //     swal('Opps', 'Failed!!!', 'warning');
+                // }
+            // }else{
+            //     swal('Opps!', 'Username already exists!!', 'warning');
+            // }
         }
         else if(user.re_password != user.password){
             swal('Opps!', 'Both passwords are not matching!', 'warning');

@@ -29,6 +29,9 @@ app.use('/user', userRouter);
 const movieRouter = require('./routes/movies');
 app.use('/movie', movieRouter);
 
+const castRouter = require('./routes/casts');
+app.use('/cast', castRouter);
+
 app.listen(9000, () => {
     console.log("Server started!!");
 })
