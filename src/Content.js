@@ -1,27 +1,49 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import SmallCard from "./SmallCard";
 
 function Content() {
-    const [movies, setMovies] = useState([]);
-    const fetchData = () => {
-        return fetch("http://localhost:9000/movie/")
-              .then((response) => /*response.json()*/ setMovies(response))
-            //   .then((data) => setMovies(data));
+  const [movie, setMovie] = useState([]);
+
+  let url = 'http://localhost:9000/movie/';
+  useEffect(
+    () => {
+      function fetchData() {
+        axios.get(url).then(
+          (response) => {
+
+            setMovie(response.data);
+
+            console.log(movie);
+
+          }
+        ).catch(
+          console.log('Error')
+        )
+      }
+      fetchData();
+    }, []
+  )
+  let DisplayMovies = () => {
+    return (
+      <>
+        {
+          movie.map((mov1) =>
+            // <li>{mov1.title}</li>
+            <h1>{<SmallCard movie={mov1} />}</h1>
+          )
+
         }
-      useEffect(() => {
-        fetchData();
-      },[])
-    
-      return (
-        <main>
-            {movies[0]}
-          <h1>User List</h1>
-          <ul>
-            {/* {user && user.length > 0 && user.map((userObj, index) => (
-                <li key={userObj.id}>{userObj.name}</li>
-              ))} */}
-          </ul>
-        </main>
-      );
+      </>
+    )
+  }
+
+  return (
+    <h1>
+      Content
+      {DisplayMovies()}
+    </h1>
+  )
 }
 
 export default Content;
