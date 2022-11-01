@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import  { Navigate } from 'react-router-dom';
+import { useEffect } from "react";
 
 function Login() {
 
@@ -11,6 +12,15 @@ function Login() {
     })
 
     const [isLoggedIn, setLogin] = useState(false);
+
+    useEffect(
+        () =>{
+            if(window.localStorage.getItem('isLoggedIn')){
+                setLogin(true);
+                setLogin(true);
+            }
+        }, []
+    )
 
     const handler = e => {
         const { name, value } = e.target;
@@ -27,11 +37,18 @@ function Login() {
             try{
                 await axios.post(url, user).then(res=>status = res.data);
                 if(status=="Login Successful!"){
-                    swal('Great!','Login Successful!!!','success');
+                    window.localStorage.setItem('isLoggedIn', true);
+                    window.localStorage.setItem('username', user.username);
+                    console.log(window.localStorage.getItem('isLoggedIn'))
+                    // swal('Great!','Login Successful!!!','success');
                     setLogin(true);
                 }
                 else{
-                    swal('Opps', 'Invalid Credentials!!!', 'warning');
+                    swal('Opps!', 'Invalid Credentials!!!', 'warning');
+                    setUser({
+                        ...user,
+                        password: ""
+                    })
                 }
             }
             catch(error){

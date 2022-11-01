@@ -21,7 +21,7 @@ function AddCast(){
             ...cast,
             [name]: value
         })
-        console.log(cast);
+        // console.log(cast);
     }
     
     const addCastToDatabase = async () => {

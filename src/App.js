@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
+import './css/StarRating.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './components/header/header';
-// import Header from './components/header/header';
+import Header from './components/header/header';
 import MovieCard from './MovieCard';
 import Signup from './pages/signup';
 import Navbar from './components/NavigationBar/NavBar';
@@ -12,6 +13,7 @@ import Movie from './Movie';
 import Error from './error';
 import AddCast from './AddCast';
 import Content from './Content';
+import StarRating from './StarRating';
 
 
 function App(){
@@ -21,8 +23,9 @@ function App(){
     <div className="App">
       
       <Navbar />
+      <StarRating />
       <BrowserRouter>
-      <Routes>
+       <Routes>
 
           <Route index element={<Content />}></Route>
           {/* <Route index element={<Home />} /> */}
@@ -34,6 +37,7 @@ function App(){
       
       </Routes>
     </BrowserRouter>
+      
     </div>
   );
 }

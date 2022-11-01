@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Select from 'react-select'
+import Select from 'react-select';
 import axios from "axios";
 import '../src/App.css';
 import swal from "sweetalert";
@@ -19,9 +19,10 @@ function AddMovie() {
             description: "",
         }
     );
+
+    // To fetch cast from database
     const [cast, setCast] = useState([]);
     const [ResponseStatus, setResponseStatus] = useState();
-    // let cast = new Array();
 
 
     const genre = [
@@ -35,15 +36,14 @@ function AddMovie() {
         { value: 'Romantic', label: 'Romantic' },
         { value: 'Sci-Fi', label: 'Sci-Fi' },
         { value: 'Mystery', label: 'Mystery' },
-        { value: 'Romantic', label: 'Romantic' },
     ]
 
-    let url = 'http://localhost:9000/cast/';
+    let url2 = 'http://localhost:9000/cast/';
     useEffect(
         () => {
             let isMounted = true;
             function fetchData() {
-                axios.get(url).then(
+                axios.get(url2).then(
                     (response) => {
                         if (cast != response.data) {
                             setCast(response.data);
@@ -148,6 +148,7 @@ function AddMovie() {
     return (
         
         <div className="">
+            
             <h1>Add Movie Page</h1>
             < input type="text" name="title" placeholder="title" onChange={handler} /><br />
             < input type="text" placeholder="writer" name="writer" onChange={handler} /><br />

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 const User = require('../models/user');
 
 router.get('/', async (req, res) => {
@@ -102,6 +103,7 @@ router.post('/login', async (req, res) => {
         if (user[0]) {
             user = user[0];
             if (user.password.toString() == req.body.password.toString()) {
+                // req.session.username = user.username;
                 res.send("Login Successful!");
             }
             else {

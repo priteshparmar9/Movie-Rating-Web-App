@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const router = express.Router();
 var bodyParser = require('body-parser');
 
 const url = "mongodb://localhost/iMDB"
@@ -31,6 +30,9 @@ app.use('/movie', movieRouter);
 
 const castRouter = require('./routes/casts');
 app.use('/cast', castRouter);
+
+const reviewRouter = require('./routes/reviews');
+app.use('/review', reviewRouter);
 
 app.listen(9000, () => {
     console.log("Server started!!");

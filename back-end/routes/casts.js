@@ -3,10 +3,12 @@ const router = express.Router();
 
 const Cast = require('../models/cast');
 
-
 router.post('/addCast', async(req, res)=>{
+
+    //String to date conversion of DOB
     var parts = req.body.dob.split('-');
     var db = new Date(parts[0], parts[1] - 1, parts[2]);
+
     try{
         const cast = new Cast({
             name: req.body.name,
@@ -24,7 +26,12 @@ router.post('/addCast', async(req, res)=>{
 
 router.get('/', async (req, res)=>{
     try{
-        const casts = await Cast.find();
+        const casts = await Cast.find(
+            {
+                // "name": "Daniel Radcliffe",
+                // "name": "Emma Watson",
+            }
+        );
         // var myJsonString = JSON.stringify(movies);
         // res.
         res.send(casts);
