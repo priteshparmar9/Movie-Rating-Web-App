@@ -33,6 +33,7 @@ function App(){
           <Route path="signup" element={<Signup />} />
           <Route path="addMovie" element={<AddMovie />} />
           <Route path="addCast" element={<AddCast />} />
+          <Route path="movie/:id" element={<Movie />}/>
           <Route path="*" element={<Error />} />
       
       </Routes>

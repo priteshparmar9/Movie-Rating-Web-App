@@ -35,4 +35,22 @@ router.get('/', async (req, res)=>{
     }
 })
 
+router.get('/:id', async (req, res)=>{
+    try{
+        const movies = await Movie.find(
+            {
+                _id: req.params.id,
+            }
+        );
+        // var myJsonString = JSON.stringify(movies);
+        // res.
+        res.json(movies);
+    }
+    catch(error){
+        // res.status(200);
+        // res.sendStatus(200);
+        res.send(error);
+    }
+})
+
 module.exports = router;
