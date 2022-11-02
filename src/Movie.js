@@ -5,6 +5,7 @@ import { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import Error from "./error";
+import StarRating from './StarRating';
 
 function Movie() {
     const { id } = useParams();
@@ -28,6 +29,7 @@ function Movie() {
                     console.log('Error')
                 )
             }
+            console.log(window.localStorage.getItem('username'));
             fetchData();
         }, []
     )
@@ -74,10 +76,14 @@ function Movie() {
                             {
                                 movie[0].cast[0].event.map(
                                     (actor) => {
+                                        let castUrl = '../cast/' + actor._id;    
                                         return (
+                                            <a href={castUrl}>
+
                                             <h3>
                                                 {actor.name}
                                             </h3>
+                                            </a>
                                         )
                                     }
                                 )
@@ -94,6 +100,12 @@ function Movie() {
                                 ' ' + movie[0].description
                             }
                         </p>
+                        {
+                            window.localStorage.getItem('isLoggedIn') ?
+                            <StarRating movie={id}/>
+                            :
+                            <></>
+                        }
                     </div>
                     :
                     <div>

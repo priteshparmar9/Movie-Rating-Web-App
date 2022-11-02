@@ -17,7 +17,6 @@ function Login() {
         () =>{
             if(window.localStorage.getItem('isLoggedIn')){
                 setLogin(true);
-                setLogin(true);
             }
         }, []
     )
@@ -39,7 +38,7 @@ function Login() {
                 if(status=="Login Successful!"){
                     window.localStorage.setItem('isLoggedIn', true);
                     window.localStorage.setItem('username', user.username);
-                    console.log(window.localStorage.getItem('isLoggedIn'))
+                    console.log(window.localStorage.getItem('username'))
                     // swal('Great!','Login Successful!!!','success');
                     setLogin(true);
                 }
@@ -59,16 +58,17 @@ function Login() {
         else{
             swal('Opps!', 'Please enter all data!', 'warning');          
         }  
+        window.location.reload();
     }
 
     return (
         <div className="login-page">
+            {isLoggedIn?<Navigate to='../'/>:<></>}
             <h1>Login Page</h1>
             < input type="text" name="username" value={user.username} placeholder="Your Name" onChange={handler} /><br />
             < input type="password" placeholder="Your Password" name="password" value={user.password} onChange={handler} /><br />
             <button className="button" value='Login' onClick={try_login}>Login</button>
             {user.name}
-            {isLoggedIn?<Navigate to='../addMovie'/>:<p></p>}
         </div>
     );
 }

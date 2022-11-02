@@ -13,7 +13,7 @@ import Movie from './Movie';
 import Error from './error';
 import AddCast from './AddCast';
 import Content from './Content';
-import StarRating from './StarRating';
+import Actor from './Actors';
 
 
 function App(){
@@ -23,7 +23,6 @@ function App(){
     <div className="App">
       
       <Navbar />
-      <StarRating />
       <BrowserRouter>
        <Routes>
 
@@ -34,6 +33,7 @@ function App(){
           <Route path="addMovie" element={<AddMovie />} />
           <Route path="addCast" element={<AddCast />} />
           <Route path="movie/:id" element={<Movie />}/>
+          <Route path="cast/:id" element={<Actor />}/>
           <Route path="*" element={<Error />} />
       
       </Routes>

@@ -11,6 +11,7 @@
     "multiselect-react-dropdown": "^2.0.25",
     "node-fetch": "^3.2.10",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-loading-skeleton": "^3.1.0",

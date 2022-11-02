@@ -1,23 +1,40 @@
 const express = require('express');
+const review = require('../models/review');
 const router = express.Router();
 
 const Review = require('../models/review');
 
-router.post('/', async (req,res) =>{
+router.post('/', async (req, res) => {
     const review = new Review({
         username: req.body.username,
-        title: req.body.title,
+        mov: req.body.mov,
         rating: req.body.rating,
         review: req.body.review,
     });
-    try{
+    try {
         let rs = review.save();
         res.json('success');
     }
-    catch(error){
-        res.json('Error: ' + error.message);
+    catch (error) {
+        res.json(error.message);
     }
-    res.send("Hello");
 })
+
+router.get('/movId/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        let rs = await review.find(
+            {
+                'mov': id
+            }
+        )
+        res.send(rs);
+    }
+    catch (e) {
+        res.send(e.message);
+    }
+})
+
+
 
 module.exports = router;

@@ -28,9 +28,19 @@ function Content() {
     return (
       <>
         {
-          movie.map((mov1) =>
-            // <li>{mov1.title}</li>
-            <h1>{<SmallCard movie={mov1} />}</h1>
+          movie.map(
+            (mov1) => {
+              let movUrl = '../movie/' + mov1._id;
+              // <li>{mov1.title}</li>
+              return (
+                <div>
+
+                  <h1>{<SmallCard movie={mov1} />}</h1>
+                  <br />
+                  <a href={movUrl}>Visit</a>
+                </div>
+              )
+            }
           )
 
         }
