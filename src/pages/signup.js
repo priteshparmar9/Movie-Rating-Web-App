@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
+import "../css/signup.css";
+import userEvent from "@testing-library/user-event";
 
 function Signup() {
 
@@ -22,35 +24,53 @@ function Signup() {
         console.log(user);
     }
     const try_login = async () => {
-        if (user.username && user.dob && user.password === user.re_password && user.password && user.email) {
-
-
-            const url = 'http://localhost:9000/user/signup';
-            const { username, email, dob, password } = user
-            await axios.post(url, user).then(res => setResponseStatus(res.data));
-            swal('Great!', 'Signup successful!', 'success');
+        if(user.username && user.dob && user.password === user.re_password && user.password && user.email){
+            
+            // const user_check_url = `http://localhost:9000/user/${user.username.toString()}`;
+            // console.log(user_check_url);
+            // await axios.get(user_check_url).then(res=>setResponseStatus(res.data));
+            // console.log(ResponseStatus);
+            // if(ResponseStatus=='fail'||!ResponseStatus){
+                const url = 'http://localhost:9000/user/signup';
+                const {username, email, dob, password} = user
+                await axios.post(url, user).then(res=>setResponseStatus(res.data));
+                swal('Great!', ResponseStatus, 'success');
+                // if(ResponseStatus=="success"){
+                //     swal('Great!','Signup Successful!!!','success');
+                // }
+                // else{
+                //     swal('Opps', 'Failed!!!', 'warning');
+                // }
+            // }else{
+            //     swal('Opps!', 'Username already exists!!', 'warning');
+            // }
         }
-        else if (user.re_password != user.password) {
+        else if(user.re_password != user.password){
             swal('Opps!', 'Both passwords are not matching!', 'warning');
         }
-        else {
-            swal('Opps!', 'Please enter all data!', 'warning');
-        }
+        else{
+            swal('Opps!', 'Please enter all data!', 'warning');          
+        }  
     }
 
     return (
         <>
-            <div className="login-page">
-                <h1>Login Page</h1>
-                < input type="text" name="username" value={user.username} placeholder="Your Name" onChange={handler} /><br />
-                < input type="text" placeholder="Your Email" name="email" value={user.email} onChange={handler} /><br />
-                < input type="date" placeholder="DOB" name="dob" value={user.dob} onChange={handler} /><br />
-
-                < input type="password" placeholder="Your Password" name="password" value={user.password} onChange={handler} /><br />
-                < input type="password" placeholder="Re-enter Password" name="re_password" value={user.re_password} onChange={handler} /><br />
-                <button className="button" value='Register' onClick={try_login}>Register</button>
-                {user.name}
+        <br/><br/><br/>
+            <div className="card-body">
+            <h3 className="signup">Create Account</h3>
+            <label for="username">Your Name</label><br/>
+            <input type="text" id="username" name="username"  placeholder="First and Last Name" onChange={handler}/><br/>
+            <label for="email">Email</label><br/>
+            <input type="text" id="email" name="email"  placeholder="Your Email" onChange={handler}/>
+            <label for="pwd">Password</label><br/>
+            <input type="password" id="pwd" name="password"  placeholder="Your Password" onChange={handler} /><br/>
+            <label for="rpwd">Re-Enter Password</label><br/>
+            <input type="password" id="rpwd" name="repassword"  placeholder="Re-enter Your Password" onChange={handler}/><br/>
+            <button className="button" value={"Create Your Account"} onClick={try_login}>Create Your Account</button>
+            <br/><br/>
+            <p>Already have account?<a href="/login"> Sign in</a></p>
             </div>
+         
         </>
     );
 }

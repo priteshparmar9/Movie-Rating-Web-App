@@ -8,9 +8,6 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    dob:{
-        type: Date,
-    },
     password:{
         type: String, 
         required: true,

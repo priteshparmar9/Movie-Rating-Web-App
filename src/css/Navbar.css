@@ -1,0 +1,110 @@
+
+/* .btn-dark{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    border: 0cm;
+    font-weight: bold;
+}
+.Tag{
+    margin-right: 30rem;
+}
+a :hover{
+    color: #ffc107;
+    
+} */
+
+/* form-control{
+    width: 10%;
+} */
+.logo{
+    width: 4rem;
+    height: 2rem;
+    margin-left: 1rem;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+nav{
+    display: flex;
+    width:100%;
+    background-color: black;
+    position: relative;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0.5rem 1.5rem;
+}
+nav ol{
+    display: flex;
+    list-style: none;
+    margin: auto;
+}
+nav ol li{
+    margin: 0 0.4rem;
+}
+nav ol li a{
+    color: white;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-weight: bold;
+
+}
+
+nav ol li:hover a{
+    background-color: rgb(36, 36, 36);
+    color: white;
+    text-decoration: none;
+}
+
+nav .search_box{
+    display: flex;
+    margin: auto;
+    height: 2rem;
+    line-height: 2rem;
+}
+nav .search_box input{
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    background-color: white;
+    height: 100%;
+    padding: 0 10px;
+    font-size: 20px;
+    width: 650px;
+}
+nav .search_box span{
+    color:white;
+    font-size: 20px;
+    height: 100%;
+    padding: 8px;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+
+}
+nav .search_box span::after{
+    height: 100%;
+    width: 0%;
+    content: '';
+    background-color: rgb(36, 36, 36) ;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    transition: 0.3s, ease;
+}
+nav .search_box span:hover::after{
+   
+    width: 100%;
+}
+
+
+
+

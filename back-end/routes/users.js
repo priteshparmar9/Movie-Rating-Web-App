@@ -15,12 +15,9 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
-    var parts = req.body.dob.split('-');
-    var db = new Date(parts[0], parts[1] - 1, parts[2]);
     const user = new User({
         username: req.body.username,
         email: req.body.email,
-        dob: parts,
         password: req.body.password,
     });
     try {
@@ -52,7 +49,8 @@ router.put('/changePassword/:id', async (req, res) => {
     catch (error) {
         res.send("Error : " + error);
     }
-})
+    }
+)
 
 router.put('/changeUsername/:id', async (req, res) => {
     try {

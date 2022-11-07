@@ -1,0 +1,22 @@
+.actor_details{
+    margin-top: 5rem;
+}
+.actor_image{
+    margin-left: 2.5rem ;
+}
+.actor_name{
+    color: white;
+    margin-left: 2.5rem ;
+    margin-top: 1rem;
+    font-size: 1.3rem;
+}
+.actor_dob{
+    color: white;
+    margin-left: 2.5rem;
+    font-size: 1.3rem;
+}
+.actor_description{
+    color:white;
+    margin-left: 2.5rem;
+    margin-top: 1.5rem;
+}

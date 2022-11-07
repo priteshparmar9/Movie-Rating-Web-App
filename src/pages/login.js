@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import  { Navigate } from 'react-router-dom';
-import { useEffect } from "react";
+
 
 function Login() {
 
@@ -12,14 +12,6 @@ function Login() {
     })
 
     const [isLoggedIn, setLogin] = useState(false);
-
-    useEffect(
-        () =>{
-            if(window.localStorage.getItem('isLoggedIn')){
-                setLogin(true);
-            }
-        }, []
-    )
 
     const handler = e => {
         const { name, value } = e.target;
@@ -38,16 +30,11 @@ function Login() {
                 if(status=="Login Successful!"){
                     window.localStorage.setItem('isLoggedIn', true);
                     window.localStorage.setItem('username', user.username);
-                    console.log(window.localStorage.getItem('username'))
-                    // swal('Great!','Login Successful!!!','success');
+                    swal('Great!','Login Successful!!!','success');
                     setLogin(true);
                 }
                 else{
-                    swal('Opps!', 'Invalid Credentials!!!', 'warning');
-                    setUser({
-                        ...user,
-                        password: ""
-                    })
+                    swal('Opps', 'Invalid Credentials!!!', 'warning');
                 }
             }
             catch(error){
@@ -58,18 +45,25 @@ function Login() {
         else{
             swal('Opps!', 'Please enter all data!', 'warning');          
         }  
-        window.location.reload();
     }
 
     return (
-        <div className="login-page">
-            {isLoggedIn?<Navigate to='../'/>:<></>}
-            <h1>Login Page</h1>
-            < input type="text" name="username" value={user.username} placeholder="Your Name" onChange={handler} /><br />
-            < input type="password" placeholder="Your Password" name="password" value={user.password} onChange={handler} /><br />
-            <button className="button" value='Login' onClick={try_login}>Login</button>
+        <>
+        <br/><br/><br/>
+            <div className="card-body" style={{marginTop:"4rem"}}>
+            <h3>Sign in</h3>
+            <label for="username">Your Username</label><br/>
+            <input type="text" id="username" name="username" value={user.username} placeholder="Enter Your Username" onChange={handler}/><br/>
+            <label for="pwd">Password</label><br/>
+            <input type="password"  id="pwd" name="password"  placeholder="Enter Your Password" value={user.password} onChange={handler} /><br/>
+            <button className="button" value={"Login"} onClick={try_login}>Sign in</button>
+            <br/><br/>
+            <p>New to imdb?<a href="/signup"> Sign up</a></p>
             {user.name}
-        </div>
+            {isLoggedIn?<Navigate to='../'/>:<p></p>}
+            </div>
+         
+        </>
     );
 }
 export default Login;

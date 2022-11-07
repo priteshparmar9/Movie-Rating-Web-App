@@ -1,0 +1,8 @@
+img .caraousel{
+    width: 100%;
+    height: min-content;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
