@@ -20,6 +20,8 @@ import MovieList from './MovieList';
 import Actor from './Actor';
 import MovieListCaT from './MovieListCatagory';
 import MovieListFind from './findMovie';
+import MovieListMovies from './OnlyMovie';
+import MovieListWeb from './OnlyWebSeries';
 
 
 function App() {
@@ -41,9 +43,13 @@ function App() {
           <Route path="*" element={<Error />} />
           <Route path="movie/:id" element={<Movie />} />
           <Route path="cast/:id" element={<Actor />} />
+          <Route path="movies" element={<MovieListMovies />} />
+          <Route path="webseries" element={<MovieListWeb />} />
           <Route path="catagory/Drama" element={<MovieListCaT catagory="Drama"/>}/>
           <Route path="catagory/Romantic" element={<MovieListCaT catagory="Romantic"/>}/>
           <Route path="catagory/Thriller" element={<MovieListCaT catagory="Thriller"/>}/>
+          <Route path="catagory/Fantacy" element={<MovieListCaT catagory="Fantacy"/>}/>
+          <Route path="catagory/Adventure" element={<MovieListCaT catagory="Adventure"/>}/>
           <Route path="catagory/Action" element={<MovieListCaT catagory="Action"/>}/>
           <Route path="find/:query" element={<MovieListFind />} />
 

@@ -38,6 +38,36 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/allmovies', async (req, res) => {
+    try {
+        const movies = await Movie.find({
+            type: "Movie"
+        });
+        // var myJsonString = JSON.stringify(movies);
+        // res.
+        res.json(movies);
+    }
+    catch (error) {
+        res.send("Error : " + error);
+    }
+})
+
+router.get('/allwebseries', async (req, res) => {
+    try {
+        const movies = await Movie.find(
+            {
+                type: "WebSeries"
+            }
+        );
+        // var myJsonString = JSON.stringify(movies);
+        // res.
+        res.json(movies);
+    }
+    catch (error) {
+        res.send("Error : " + error);
+    }
+})
+
 router.get('/castInMovie/:id', async (req, res) => {
     try {
         const movies = await Movie.find({
