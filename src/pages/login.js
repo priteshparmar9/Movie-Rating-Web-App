@@ -28,10 +28,10 @@ function Login() {
             try{
                 await axios.post(url, user).then(res=>status = res.data);
                 if(status=="Login Successful!"){
+                    setLogin(true);
                     window.localStorage.setItem('isLoggedIn', true);
                     window.localStorage.setItem('username', user.username);
                     swal('Great!','Login Successful!!!','success');
-                    setLogin(true);
                 }
                 else{
                     swal('Opps', 'Invalid Credentials!!!', 'warning');
@@ -49,6 +49,10 @@ function Login() {
 
     return (
         <>
+        {
+            (isLoggedIn) ?
+            <Navigate to="../" />:<></>
+        }
         <br/><br/><br/>
             <div className="card-body" style={{marginTop:"4rem"}}>
             <h3>Sign in</h3>
@@ -60,7 +64,6 @@ function Login() {
             <br/><br/>
             <p>New to imdb?<a href="/signup"> Sign up</a></p>
             {user.name}
-            {isLoggedIn?<Navigate to='../'/>:<p></p>}
             </div>
          
         </>

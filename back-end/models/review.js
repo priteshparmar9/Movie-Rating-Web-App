@@ -7,7 +7,7 @@ const reviewSchema = mongoose.Schema({
             // ref: 'user',
         }
     ,
-    mov:
+    movie:
         {
             type: String,
             // type: reviewSchema.Types.objectId,

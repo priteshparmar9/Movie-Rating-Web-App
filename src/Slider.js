@@ -7,9 +7,9 @@ import 'swiper/swiper-bundle.css';
 import { useRef } from 'react';
 import 'swiper/css';
 import './css/Slider.css';
-import img1 from './images/transformers.jpg';
-import img2 from './images/i2.jpg';
-import img3 from './images/i3.jpg';
+import img1 from './images/img1.jpg';
+import img2 from './images/img2.jpg';
+import img3 from './images/img3.jpg';
 
 
 

@@ -41,6 +41,15 @@ router.get('/', async (req, res)=>{
     }
 })
 
+router.get('/name/:id', async (req, res)=>{
+    try{
+        const cast = await Cast.findById(req.params.id);
+        res.send(cast.name);
+    }
+    catch(error){
+        res.send("Error 1: " + error);
+    }
+})
 router.get('/:id', async (req, res)=>{
     try{
         const cast = await Cast.find(

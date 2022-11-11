@@ -7,6 +7,7 @@ import Skeleton from "react-loading-skeleton";
 import { useAsyncError, useParams } from "react-router-dom";
 import Error from "./error";
 import "./css/actor.css"
+import MovieListActor from "./ActorInMovie";
 
 function Actor() {
     const [actor, setActor] = useState(null);
@@ -66,6 +67,7 @@ function Actor() {
                     :
                     <Error />
             }
+            <MovieListActor id={id}/>
         </div>
     )
 

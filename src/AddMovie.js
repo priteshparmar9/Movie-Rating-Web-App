@@ -15,9 +15,11 @@ function AddMovie() {
             writer: "",
             director: "",
             cast: [],
+            duration: "",
             poster: "",
             trailer: "",
             description: "",
+            type: "",
         }
     );
     const [cast, setCast] = useState([]);
@@ -38,6 +40,26 @@ function AddMovie() {
         { value: 'Mystery', label: 'Mystery' },
         { value: 'Romantic', label: 'Romantic' },
     ]
+
+    const types = [
+        { value: 'Movie', label: 'Movie' },
+        { value: 'WebSeries', label: 'Web Series' },
+    ]
+
+    const customStyles = {
+        option: provided => ({
+            ...provided,
+            color: 'black'
+        }),
+        control: provided => ({
+            ...provided,
+            color: 'black'
+        }),
+        singleValue: provided => ({
+            ...provided,
+            color: 'black'
+        })
+    }
 
     let url = 'http://localhost:9000/cast/';
     useEffect(
@@ -70,8 +92,14 @@ function AddMovie() {
         }
 
         let handleSelectChange = (event) => {
+            let acts = Array();
+            for(let a in event){
+                acts.push(event[a]._id);
+                // console.log(event[a]);
+            }
+            console.log(acts);
             setMovie(
-                { ...movie, cast: { event } }
+                { ...movie, cast: acts  }
             )
             console.log(movie);
         }
@@ -85,17 +113,7 @@ function AddMovie() {
                 isMulti
                 placeholder='Select Cast...'
                 onChange={handleSelectChange}
-                theme={(theme) => ({
-                    ...theme,
-                    borderRadius: 5,
-                    colors: {
-                        ...theme.colors,
-                        text: 'orangered',
-                        primary25: 'lightblue',
-                        primary: 'black',
-                        neutral10: 'yellow',
-                    },
-                })}
+                styles={customStyles}
             />
         )
     }
@@ -103,11 +121,14 @@ function AddMovie() {
 
     let DisplayGenres = () => {
         let handleSelectChange1 = (event) => {
+            let gen = Array();
+            for(var g in event){
+                gen.push(event[g].value);
+            }
             setMovie(
-                { ...movie, genre: { event } }
+                { ...movie, genre:  gen  }
             )
             console.log(movie);
-            // console.log(selectedOptions);
         }
         return (
             <Select
@@ -115,17 +136,25 @@ function AddMovie() {
                 isMulti
                 placeholder='Select Genres...'
                 onChange={handleSelectChange1}
-                theme={(theme) => ({
-                    ...theme,
-                    borderRadius: 5,
-                    colors: {
-                        ...theme.colors,
-                        text: 'orangered',
-                        primary25: 'lightblue',
-                        primary: 'black',
-                        neutral10: 'yellow',
-                    },
-                })}
+                styles={customStyles}
+            />
+        )
+    }
+
+    let DisplayTypes = () => {
+        let handleSelectChange1 = (event) => {
+            let val = event.value;
+            setMovie(
+                { ...movie, type:  val  }
+            )
+            console.log(movie);
+        }
+        return (
+            <Select
+                options={types}
+                placeholder='Select Type...'
+                onChange={handleSelectChange1}
+                styles={customStyles}
             />
         )
     }
@@ -147,40 +176,63 @@ function AddMovie() {
         swal('Yay!!', 'Movie added to the database', 'success');
     }
     return (
-
-        <div className="add_movieDetails" style={{ marginLeft: "2.5rem", marginTop: "6rem", color: "white" }}>
-            <h1 >Add Movie</h1>
-            <label for="title">Title: </label><br />
-            < input style={{width: '90rem'}}type="text" id="title" name="title" placeholder="Movie/WebSeries Name" onChange={handler} /><br />
-            <label for="writer">Writer: </label><br />
-            < input style={{width: '90rem'}} type="text" placeholder="Writer Name" id="writer" name="writer" onChange={handler} /><br />
-            <label for="director">Director: </label><br />
-            < input style={{width: '90rem'}} type="text" placeholder="Director Name" id="director" name="director" onChange={handler} /><br />
-            <label for="type">Select Type: </label><br />
-            <select style={{width: '90rem'}} name="type" id="type" style={{ width: "20rem", marginBottom: "1rem", height: "2em" }}>
-                <option>Movie</option>
-                <option>Web-Series</option>
-            </select><br></br>
-            <label for="poster">Poster Link: </label><br />
-            < input style={{width: '90rem'}} type="text" id="poster" name="poster" onChange={handler} /><br />
-            <label for="trailer">Trailer Link: </label><br />
-            < input style={{width: '90rem'}} type="text" id="trailer" name="trailer" onChange={handler} /><br />
-            <label for="description">Description: </label><br />
-            < input style={{width: '90rem'}} type="text" placeholder="Description" id="description" name="description" onChange={handler} /><br />
-
-
-            <div className="genres" style={{ width: "90rem" }}>
-
-                {DisplayGenres()}
+            
+            <div
+                style={{
+                    textAlign: 'center',
+                }}
+            >
+                <h1 style={{
+                    color: 'yellow'
+                }}>Add Movie</h1>
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <input type='text' style={{ borderRadius: '10px', width: '100%' }} id="title" name="title" placeholder="Movie/WebSeries Name" onChange={handler}/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <input type='text' style={{ borderRadius: '10px', width: '100%' }} placeholder="Writer Name" id="writer" name="writer" onChange={handler}/>
+                        </div>
+                        <div className="col">
+                            <input type='text' style={{ borderRadius: '10px', width: '100%' }} placeholder="Director Name" id="director" name="director" onChange={handler}/>
+                        </div>
+                        <div className="col">
+                            {DisplayTypes()}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <input type='text' style={{ borderRadius: '10px', width: '100%' }} id="poster" name="poster" onChange={handler} placeholder="Poster"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <input type='text' style={{ borderRadius: '10px', width: '100%' }} id="trailer" name="trailer" onChange={handler} placeholder="Trailer"/>
+                        </div>
+                        <div>
+                            <input type='number' min='30' max='240' style={{ borderRadius: '10px', width: '400px' }} id="duration" name="duration" onChange={handler} placeholder="Duration (in Minutes)"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                    <div className="col">
+                            {DisplayGenres()}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            {DisplayCast()}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <textarea style={{ borderRadius: '10px', width: '100%' }} placeholder="Description" id="description" name="description" onChange={handler}/>
+                        </div>
+                    </div>
+                </div>
+                <button className="button" value='Register' style={{ marginTop: "1rem", marginBottom: "2rem" }} onClick={addMovieToDatabase}>Add Movie</button>
             </div>
-            <br />
-            <div className="preview-values" style={{ width: "90rem" }} >
-                {DisplayCast()}
-            </div>
-
-            <button className="button" value='Register' style={{ marginTop: "1rem", marginBottom: "2rem" }} onClick={addMovieToDatabase}>Add Movie</button>
-
-        </div>
 
     )
 }

@@ -7,7 +7,7 @@ const Review = require('../models/review');
 router.post('/', async (req, res) => {
     const review = new Review({
         username: req.body.username,
-        mov: req.body.mov,
+        movie: req.body.mov,
         rating: req.body.rating,
         review: req.body.review,
     });
@@ -25,7 +25,7 @@ router.get('/movId/:id', async (req, res) => {
     try {
         let rs = await review.find(
             {
-                'mov': id
+                'movie': id
             }
         )
         res.send(rs);

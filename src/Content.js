@@ -33,10 +33,8 @@ function Content() {
       <>
         {
           movie.map((mov1) =>
-            // <li>{mov1.title}</li>
             <h1>{<SmallCard movie={mov1} />}</h1>
           )
-
         }
       </>
     )
@@ -44,7 +42,7 @@ function Content() {
 
   return (
     <div>
-      <Slider />
+    
       <MovieList />
       {/* {DisplayMovies()} */}
     </div>

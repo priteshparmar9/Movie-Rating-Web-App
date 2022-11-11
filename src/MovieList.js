@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import './css/movieList.css';
+import Slider from "./Slider";
 
 const MovieList =() =>{
    const [movie, setMovie] = useState([]);
@@ -53,6 +54,7 @@ const MovieList =() =>{
   
     return(
        <>
+       <Slider />
         {DisplayMovies()}
         
        </>
