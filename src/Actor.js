@@ -67,7 +67,7 @@ function Actor() {
                     :
                     <Error />
             }
-            <MovieListActor id={id}/>
+            {/* <MovieListActor id={id} name={actor[0].name}/> */}
         </div>
     )
 

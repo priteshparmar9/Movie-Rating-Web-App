@@ -94,7 +94,7 @@ function AddMovie() {
         let handleSelectChange = (event) => {
             let acts = Array();
             for(let a in event){
-                acts.push(event[a]._id);
+                acts.push({id:event[a]._id, name:event[a].name});
                 // console.log(event[a]);
             }
             console.log(acts);

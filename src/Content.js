@@ -28,17 +28,7 @@ function Content() {
       fetchData();
     }, []
   )
-  let DisplayMovies = () => {
-    return (
-      <>
-        {
-          movie.map((mov1) =>
-            <h1>{<SmallCard movie={mov1} />}</h1>
-          )
-        }
-      </>
-    )
-  }
+  
 
   return (
     <div>

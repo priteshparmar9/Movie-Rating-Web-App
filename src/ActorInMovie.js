@@ -7,14 +7,20 @@ import axios from "axios";
 import './css/movieList.css';
 
 const MovieListActor = (props) => {
+    let name = props.name;
     let id = props.id;
+    console.log(id);
     const [movie, setMovie] = useState([]);
 
-    let url = 'http://localhost:9000/movie/castInMovie/' + id;
+    let url = 'http://localhost:9000/movie/castInMovie/';
     useEffect(
         () => {
             function fetchData() {
-                axios.get(url).then(
+                let act = {
+                    id: id,
+                    name: name
+                }
+                axios.post(url, act).then(
                     (response) => {
 
                         setMovie(response.data);

@@ -109,7 +109,6 @@ function Movie() {
                                                     return (
                                 
                                                         <a href={url}>
-
                                                             <span className="movie_genre">{gen} </span>
                                                         </a>
                                                     )
@@ -133,7 +132,20 @@ function Movie() {
                                                 }
                                             ):
                                             <></>
-                                        } */}
+                                        } */
+                                            movie[0].cast.map(
+                                                (c)=>{
+                                                    console.log(c);
+                                                    var castUrl = '../cast/' + c.id;
+                                                    return(
+                                                        <a href={castUrl}>
+                                                            <span className="cast">{c.name} </span>
+                                                        </a>
+                                                    )
+                                                }
+                                            )
+                                        
+                                        }
                                     </div>
                                     <div className="movie_director" style={{ marginTop: "1rem", marginLeft: "16rem" }}>
                                         <span style={{ color: "white", fontSize: "1.5rem" }}>Director: </span>

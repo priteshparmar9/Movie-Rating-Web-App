@@ -82,6 +82,24 @@ router.get('/castInMovie/:id', async (req, res) => {
     }
 })
 
+router.post('/castInMovie/', async (req, res) => {
+    try {
+        const movies = await Movie.find({
+            cast: {
+                id: req.body.id,
+                name: req.body.name
+            }
+        });
+        // var myJsonString = JSON.stringify(movies);
+        // res.
+        console.log(movies);
+        res.json(movies);
+    }
+    catch (error) {
+        res.send("Error : " + error);
+    }
+})
+
 router.get('/genreMovie/:gen', async (req, res) => {
     try {
         const movies = await Movie.find({

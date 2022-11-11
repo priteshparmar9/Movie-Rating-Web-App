@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Select from 'react-select';
 // import { FaSearch } from 'react-icons/fa';
 import {
@@ -79,7 +80,7 @@ function NavBar() {
     return (
         <div>
             <Nav>
-                <NavLink to="/">
+                <a href="/">
                     <h1
                         style={
                             {
@@ -94,13 +95,13 @@ function NavBar() {
                                 background: 'radial-gradient(#ffffb8, #ce981d)',
                             }
                         }>MovieDB</h1>
-                </NavLink>
+                </a>
                 <Bars />
                 <NavMenu>
                     <input type="text" name="query" onChange={handler} />
-                    <NavLink to={query}>
+                    <Link to={query}>
                         Search
-                    </NavLink>
+                    </Link>
                     {
                         (window.localStorage.getItem("username") == "admin") ?
                             <>
@@ -128,9 +129,9 @@ function NavBar() {
                             </>
                     }
 
-                    <NavLink to="/about" activeStyle>
+                    <Link to="/about" activeStyle>
                         About
-                    </NavLink>
+                    </Link>
                     {
                         ConditionalLinks()
                     }
