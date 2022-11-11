@@ -13,9 +13,20 @@ function Movie() {
 
     const [movie, setMovie] = useState(null);
     const [reviews, setReviews] = useState(null);
-    const [newActors, setActors] = useState([]);
+    const [rating, setRating] = useState(0);
     const [rev, setRev] = useState(true);
     const [loading, setLoad] = useState(true);
+
+
+    function calculateRating() {
+        let n = 0, sum = 0;
+        for (let review in reviews) {
+            n++;
+            sum += review.rating;
+        }
+        if (n) sum /= n;
+        setRating(n);
+    }
 
     let url = `http://localhost:9000/movie/${id}`;
     useEffect(
@@ -25,6 +36,7 @@ function Movie() {
             let fetchData = async () => {
                 await axios.get(url).then(
                     (response) => {
+                        document.title = response.data[0].title;
                         console.log(response);
                         setMovie(response.data);
                         console.log(movie);
@@ -39,6 +51,8 @@ function Movie() {
                     (response) => {
                         setReviews(response.data);
                         console.log("Review is : " + reviews)
+                        // calculateRating(reviews);
+                        console.log("rating is " + rating);
                         console.log(reviews);
                     }
                 ).catch(
@@ -53,7 +67,6 @@ function Movie() {
     setTimeout(
         () => {
             setLoad(false);
-            // console.log(movie);
         }, 5000
     )
 
@@ -62,7 +75,6 @@ function Movie() {
         console.log("Show Ratting Called!!!!!!!!!!!!1111");
         setTimeout(() => {
             console.log(reviews);
-            // console.log(newActors);
         }, 2000);
 
         if (window.localStorage.getItem('isLoggedIn')) {
@@ -72,13 +84,29 @@ function Movie() {
         }
         return (
             <>
-                Not Logged IN
+                <h4 style={{
+                    color: "white",
+                    marginTop: "1rem",
+                    marginBottom: "1rem"
+                }}>
+                    Want to give review?
+
+
+                    <a href="../login" style={{
+                        color: "blue",
+
+                        marginBottom: "1rem"
+
+                    }}>Login</a>
+
+                </h4>
             </>
         )
     }
     return (
 
         <>
+            {calculateRating}
             {
                 movie
                     ?
@@ -105,9 +133,9 @@ function Movie() {
                                         {
                                             movie[0].genre.map(
                                                 (gen) => {
-                                                    let url = "../catagory/"+ gen; 
+                                                    let url = "../catagory/" + gen;
                                                     return (
-                                
+
                                                         <a href={url}>
                                                             <span className="movie_genre">{gen} </span>
                                                         </a>
@@ -115,6 +143,9 @@ function Movie() {
                                                 }
                                             )
                                         }
+                                    </div>
+                                    <div style={{ marginTop: "1rem", marginLeft: "15.5rem" }}>
+                                        Rating : {rating}⭐
                                     </div>
                                     <div className="movie_cast" style={{ marginTop: "1.5rem", marginLeft: "16rem" }}>
                                         <span style={{ color: "white", fontSize: "1.5rem" }}>Cast: </span>
@@ -134,17 +165,19 @@ function Movie() {
                                             <></>
                                         } */
                                             movie[0].cast.map(
-                                                (c)=>{
+                                                (c) => {
                                                     console.log(c);
                                                     var castUrl = '../cast/' + c.id;
-                                                    return(
+                                                    return (
                                                         <a href={castUrl}>
                                                             <span className="cast">{c.name} </span>
+                                                            
                                                         </a>
+
                                                     )
                                                 }
                                             )
-                                        
+
                                         }
                                     </div>
                                     <div className="movie_director" style={{ marginTop: "1rem", marginLeft: "16rem" }}>
@@ -159,24 +192,33 @@ function Movie() {
                             </div>
                         </div>
                         <div className="description"><h2>Description: </h2>{movie[0].description}</div>
+
                         <div>
                             {
                                 reviews ?
                                     <>
-                                        <h2>Reviews</h2>
+                                        <h2 style={{
+                                            // marginLeft: "16rem",
+                                            textAlign: "center",
+                                            marginTop: "5rem",
+                                            color: "white",
+                                        }}
+                                        >Reviews</h2>
                                         {
                                             reviews.map(
                                                 (review) => {
                                                     return (
-                                                        <div style={{ marginTop: "1rem", marginLeft: "16rem" }}>
-                                                            <span style={{ color: "white", fontSize: "1.5rem" }}>
-                                                                {review.username} :
+                                                        <div style={{ marginTop: "1rem", marginLeft: "16rem", fontSize: "1rem", backgroundColor: "white", marginRight: '16rem', padding: "5rem", borderRadius: "2rem" }}>
+                                                            <span style={{ color: "black", fontSize: "1.5rem" }}>
+                                                                Username : {review.username}
                                                             </span>
-                                                            <span style={{ color: "white", fontSize: "1.5rem" }}>
-                                                                {review.rating}
+                                                            <br />
+                                                            <span style={{ color: "black", fontSize: "1.5rem" }}>
+                                                                Rating :  ⭐{review.rating}/10
                                                             </span>
-                                                            <span style={{ color: "white", fontSize: "1.5rem" }}>
-                                                                {review.review}
+                                                            <hr />
+                                                            <span style={{ color: "black", fontSize: "1rem" }}>
+                                                                Review : {review.review}
                                                             </span>
                                                         </div>
                                                     )

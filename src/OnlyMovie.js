@@ -13,6 +13,7 @@ const MovieListMovies =() =>{
   let url = 'http://localhost:9000/movie/allmovies';
   useEffect(
     () => {
+      document.title = 'Movies | MovieDB';
       function fetchData() {
         axios.get(url).then(
           (response) => {

@@ -40,27 +40,34 @@ function Actor() {
     )
 
     return (
-        <div>
+        <div style={{
+            marginTop: "8rem",
+            display: "block",
+            marginLeft: "10rem",
+            fontSize: "1rem",
+            color: "white",
+            marginRight: "10rem",
+        }}>
             {
                 actor ?
-                <div>
-                    {actor[0].name}
-                    <br />
-                    <img src={actor[0].image}/>
-                    <br />
-                    {actor[0].dob}
-                    <br />
-                    {actor[0].description}
-                </div>
-                :
-            
-                loading
-                    ?
-                    <Skeleton />
+                    <div>
+                        {actor[0].name}
+                        < br />
+                        <img src={actor[0].image} />
+                        <br />
+                        {actor[0].dob}
+                        <br />
+                        {actor[0].description}
+                    </div >
                     :
-                    <Error />
+
+                    loading
+                        ?
+                        <Skeleton />
+                        :
+                        <Error />
             }
-        </div>
+        </div >
     )
 
 

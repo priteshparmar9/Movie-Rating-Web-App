@@ -13,6 +13,7 @@ const MovieListWeb =() =>{
   let url = 'http://localhost:9000/movie/allwebseries';
   useEffect(
     () => {
+      document.title = 'WebSeries | MovieDB';
       function fetchData() {
         axios.get(url).then(
           (response) => {

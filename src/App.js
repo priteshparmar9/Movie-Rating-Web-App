@@ -22,6 +22,8 @@ import MovieListCaT from './MovieListCatagory';
 import MovieListFind from './findMovie';
 import MovieListMovies from './OnlyMovie';
 import MovieListWeb from './OnlyWebSeries';
+import Footer from './Footer';
+import Footer1 from './Footer';
 
 
 function App() {
@@ -47,7 +49,11 @@ function App() {
           <Route path="webseries" element={<MovieListWeb />} />
           <Route path="catagory/Drama" element={<MovieListCaT catagory="Drama"/>}/>
           <Route path="catagory/Romantic" element={<MovieListCaT catagory="Romantic"/>}/>
+          <Route path="catagory/Horror" element={<MovieListCaT catagory="Horror"/>}/>
+          <Route path="catagory/Comedy" element={<MovieListCaT catagory="Comedy"/>}/>
           <Route path="catagory/Thriller" element={<MovieListCaT catagory="Thriller"/>}/>
+          <Route path="catagory/Mystery" element={<MovieListCaT catagory="Mystery"/>}/>
+          <Route path="catagory/Sci-Fi" element={<MovieListCaT catagory="Sci-Fi"/>}/>
           <Route path="catagory/Fantacy" element={<MovieListCaT catagory="Fantacy"/>}/>
           <Route path="catagory/Adventure" element={<MovieListCaT catagory="Adventure"/>}/>
           <Route path="catagory/Action" element={<MovieListCaT catagory="Action"/>}/>
@@ -55,6 +61,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
+      {/* <Footer1 /> */}
 
     </div>
   );

@@ -1,48 +1,77 @@
 import React from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Navigate, redirect, useLinkClickHandler } from "react-router-dom"
 import Select from 'react-select';
-// import { FaSearch } from 'react-icons/fa';
-import {
-    Nav,
-    NavLink,
-    Bars,
-    NavMenu,
-    NavBtn,
-    NavBtnLink
-} from './NavbarElements';
+import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
+
+
+
 
 function NavBar() {
 
     const [query, setQuery] = useState();
 
-    const genre = [
-        { value: 'Drama', label: 'Drama' },
-        { value: 'Action', label: 'Action' },
-        { value: 'Horror', label: 'Horror' },
-        { value: 'Thriller', label: 'Thriller' },
-        { value: 'Adventure', label: 'Adventure' },
-        { value: 'Fantacy', label: 'Fantacy' },
-        { value: 'Comedy', label: 'Comedy' },
-        { value: 'Romantic', label: 'Romantic' },
-        { value: 'Sci-Fi', label: 'Sci-Fi' },
-        { value: 'Mystery', label: 'Mystery' },
-        { value: 'Romantic', label: 'Romantic' },
+    const searchOptions = [
+        {
+            value: 'Movie', label: 'Movies'
+        },
+        {
+            value: 'Actor', label: 'Actors'
+        },
+        {
+            value: 'Director', label: 'Directors'
+        },
     ]
 
-    const customStyles = {
-        option: provided => ({
-            ...provided,
-            color: 'black'
-        }),
-        control: provided => ({
-            ...provided,
-            color: 'black'
-        }),
-        singleValue: provided => ({
-            ...provided,
-            color: 'black'
-        })
+    function ShowTags() {
+        return (
+            // <div className='userTag'>
+            //     <a href="/login">
+            //         <button className='btn btn-dark'>Login</button>
+            //     </a>
+            //     <a href="/signup">
+            //         <button className='btn btn-dark'>Signup</button>
+            //     </a>   
+            // </div>
+            <ol>
+                <li><Link to="/movies">Movies</Link></li>
+                <li><Link to="/webseries">Web-Series</Link></li>
+                <li><Link to="/login">Sign In</Link></li>
+            </ol>
+
+
+        )
+    }
+
+    function ShowAdminTags() {
+        return (
+            <ol>
+                <li><a href="/addmovie">AddMovie</a></li>
+                <li><a href="/addcast">Add Cast</a></li>
+            </ol>
+        )
+    }
+
+    function ShowLogout() {
+        function logout() {
+            window.localStorage.removeItem('isLoggedIn')
+            window.localStorage.removeItem('username')
+            window.location.reload();
+        }
+
+        return (
+            <ol>
+                <li><Link to="/movies">Movies</Link></li>
+                <li><Link to="/webseries">Web-Series</Link></li>
+                <li>
+
+                    <Link onClick={logout} style={{
+                        marginLeft: '1px'
+                    }}>Logout</Link>
+                </li>
+            </ol>
+        )
     }
 
     function handler(event) {
@@ -57,89 +86,35 @@ function NavBar() {
         window.location.reload();
     }
 
-    function ConditionalLinks() {
-        if (window.localStorage.getItem('isLoggedIn')) {
-            return (
-                <NavBtn>
-                    <NavBtnLink to="/" onClick={logout}>
-                        Logout
-                    </NavBtnLink>
-                </NavBtn>
-            )
-        }
-        return (
 
-            <NavBtn>
-                <NavBtnLink to="/login">
-                    SignIn
-                </NavBtnLink>
-            </NavBtn>
-        )
-    }
 
     return (
         <div>
-            <Nav>
-                <a href="/">
-                    <h1
-                        style={
-                            {
-                                font: '2em Impact, HelveticaNeue-CondensedBold, sans-serif',
-                                color: '#000',
-                                textShadow: '0 0 0.15em #fff',
-                                textDecoration: 'none',
-                                display: 'inline-block',
-                                verticalAlign: 'bottom',
-                                padding: '0.10em 0.25em',
-                                borderRadius: '0.15em',
-                                background: 'radial-gradient(#ffffb8, #ce981d)',
-                            }
-                        }>MovieDB</h1>
+            <nav className='fixed-top'>
+
+                <a className="navbar-brand" href="/">
+                    <img className='logo' src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png" width="30" height="30" alt="" />
                 </a>
-                <Bars />
-                <NavMenu>
-                    <input type="text" name="query" onChange={handler} />
+
+                <div className='search_box'>
+                    <input type="search" placeholder='Search...' onChange={handler}></input>
                     <Link to={query}>
-                        Search
+                        <span className='fa fa-search'>Search</span>
+                        {/* Search */}
                     </Link>
-                    {
-                        (window.localStorage.getItem("username") == "admin") ?
-                            <>
-                                <NavLink to="/addmovie" activeStyle>
-                                    AddMovie
-                                </NavLink>
-                                <NavLink to="/addcast" activeStyle>
-                                    AddCast
-                                </NavLink>
-                            </>
-                            :
-                            <>
-                                <NavLink to="/catagory/Drama" activeStyle>
-                                    Drama
-                                </NavLink>
-                                <NavLink to="/catagory/Action" activeStyle>
-                                    Action
-                                </NavLink>
-                                <NavLink to="/catagory/Thriller" activeStyle>
-                                    Thriller
-                                </NavLink>
-                                <NavLink to="/catagory/Romantic" activeStyle>
-                                    Romantic
-                                </NavLink>
-                            </>
-                    }
+                </div>
+                {
 
-                    <Link to="/about" activeStyle>
-                        About
-                    </Link>
-                    {
-                        ConditionalLinks()
-                    }
+                    (window.localStorage.getItem('username') == 'admin') ? ShowAdminTags() : console.log('Do nothing')
+                }
+                {
+                    window.localStorage.getItem('isLoggedIn') ? ShowLogout() : ShowTags()
+                }
 
-                </NavMenu>
-            </Nav>
+            </nav>
+
         </div>
-    );
+    )
 }
 
 

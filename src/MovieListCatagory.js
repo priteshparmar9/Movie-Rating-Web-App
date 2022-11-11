@@ -14,6 +14,7 @@ const MovieListCat = (props) => {
     let url = 'http://localhost:9000/movie/genreMovie/'+catagory;
     useEffect(
         () => {
+            document.title = catagory + ' Movies | MovieDB';
             function fetchData() {
                 axios.get(url).then(
                     (response) => {
@@ -34,6 +35,10 @@ const MovieListCat = (props) => {
     function DisplayMovies() {
         return (
             <>
+                <br />
+                <br />
+                <br />
+
                 {
                     movie.length != 0?
                     movie.map(

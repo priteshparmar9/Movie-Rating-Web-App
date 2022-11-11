@@ -54,6 +54,9 @@ const MovieList =() =>{
   
     return(
        <>
+       <br/>
+       <br/>
+       <br/>
        <Slider />
         {DisplayMovies()}
         

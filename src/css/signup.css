@@ -6,7 +6,7 @@
  border-radius: 5px;
  width: 23rem;
  align-items: center;
- margin-left: 32rem;
+ margin-left: 37rem;
  height: auto;
  
 }
@@ -58,6 +58,6 @@ p a {
     
 }
 p a:hover{
-    color: rgb(245, 166, 20);;
+    color: rgb(245, 166, 20);
 
 }
