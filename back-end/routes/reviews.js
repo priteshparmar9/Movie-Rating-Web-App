@@ -28,7 +28,20 @@ router.get('/movId/:id', async (req, res) => {
                 'movie': id
             }
         )
-        res.send(rs);
+        let n = 0, sum = 0.0;
+        for (let reviews in rs){
+            n++;
+            sum += parseInt(rs[reviews].rating);
+        }
+        if(n)sum/=n;
+        rs.rating = n;
+        // res.send(rs);
+        res.json(
+            {
+                reviews: rs,
+                rating: sum
+            }
+        )
     }
     catch (e) {
         res.send(e.message);

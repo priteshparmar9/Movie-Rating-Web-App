@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Navigate, redirect, useLinkClickHandler } from "react-router-dom"
 import Select from 'react-select';
@@ -8,47 +8,43 @@ import { FaSearch } from "react-icons/fa";
 
 
 
-function NavBar() {
+function NavBar(props) {
 
-    const [query, setQuery] = useState();
+    var isLoggedIn = props.isLoggedIn;
+    var isAdmin = props.isAdmin;
+    var setLogin = props.setLogin;
+    var setAdmin = props.setAdmin;
+    var query = props.query;
+    var setQuery = props.setQuery;
+    
+    useEffect(
+        () => {
+            if(window.localStorage.getItem('isLoggedIn')){
+                console.log("Is Logged in : " + window.localStorage.getItem('isLoggedIn'));  
+                setLogin(true);
+                if(window.localStorage.getItem('isAdmin') == true){
+                  setAdmin(true);
+                }
+              }
+        }
+    )
 
-    const searchOptions = [
-        {
-            value: 'Movie', label: 'Movies'
-        },
-        {
-            value: 'Actor', label: 'Actors'
-        },
-        {
-            value: 'Director', label: 'Directors'
-        },
-    ]
 
     function ShowTags() {
         return (
-            // <div className='userTag'>
-            //     <a href="/login">
-            //         <button className='btn btn-dark'>Login</button>
-            //     </a>
-            //     <a href="/signup">
-            //         <button className='btn btn-dark'>Signup</button>
-            //     </a>   
-            // </div>
             <ol>
                 <li><Link to="/movies">Movies</Link></li>
                 <li><Link to="/webseries">Web-Series</Link></li>
                 <li><Link to="/login">Sign In</Link></li>
             </ol>
-
-
         )
     }
 
     function ShowAdminTags() {
         return (
             <ol>
-                <li><a href="/addmovie">AddMovie</a></li>
-                <li><a href="/addcast">Add Cast</a></li>
+                <li><Link to="/addmovie">AddMovie</Link></li>
+                <li><Link to="/addcast">Add Cast</Link></li>
             </ol>
         )
     }
@@ -57,7 +53,8 @@ function NavBar() {
         function logout() {
             window.localStorage.removeItem('isLoggedIn')
             window.localStorage.removeItem('username')
-            window.location.reload();
+            setLogin(false);
+            setAdmin(false);
         }
 
         return (
@@ -65,7 +62,6 @@ function NavBar() {
                 <li><Link to="/movies">Movies</Link></li>
                 <li><Link to="/webseries">Web-Series</Link></li>
                 <li>
-
                     <Link onClick={logout} style={{
                         marginLeft: '1px'
                     }}>Logout</Link>
@@ -76,39 +72,29 @@ function NavBar() {
 
     function handler(event) {
         setQuery("/find/" + event.target.value);
+        console.log(query);
     }
-
-    console.log(window.localStorage.getItem('isLoggedIn'));
-    function logout() {
-        window.localStorage.removeItem('isLoggedIn');
-        window.localStorage.removeItem('username')
-        // console.log(window.localStorage.getItem('isLoggedIn'));
-        window.location.reload();
-    }
-
 
 
     return (
         <div>
             <nav className='fixed-top'>
 
-                <a className="navbar-brand" href="/">
+                <Link className="navbar-brand" to="/">
                     <img className='logo' src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png" width="30" height="30" alt="" />
-                </a>
+                </Link>
 
                 <div className='search_box'>
                     <input type="search" placeholder='Search...' onChange={handler}></input>
                     <Link to={query}>
                         <span className='fa fa-search'>Search</span>
-                        {/* Search */}
                     </Link>
                 </div>
                 {
-
-                    (window.localStorage.getItem('username') == 'admin') ? ShowAdminTags() : console.log('Do nothing')
+                    isAdmin ? ShowAdminTags() : console.log('Do nothing')
                 }
                 {
-                    window.localStorage.getItem('isLoggedIn') ? ShowLogout() : ShowTags()
+                    isLoggedIn ? ShowLogout() : ShowTags()
                 }
 
             </nav>

@@ -7,8 +7,8 @@ import axios from "axios";
 import './css/movieList.css';
 import Slider from "./Slider";
 
-const MovieList =() =>{
-   const [movie, setMovie] = useState([]);
+const MovieList = () => {
+  const [movie, setMovie] = useState([]);
 
   let url = 'http://localhost:9000/movie/';
   useEffect(
@@ -30,38 +30,36 @@ const MovieList =() =>{
     }, []
   )
 
-  function DisplayMovies(){
-    return(
-    <>
-    {
-        movie.map(
-          (mov1, index) => {
-            let movUrl = '../movie/' + mov1._id;
-            // <li>{mov1.title}</li>
-            return (
-              <>
-                <Cards movie={mov1}/>
-                {/* {mov1.title} */}
-              </>
-            )
-          }
-        )
-   }
-  </>
-);
-}
-
-  
-    return(
-       <>
-       <br/>
-       <br/>
-       <br/>
-       <Slider />
-        {DisplayMovies()}
-        
-       </>
+  function DisplayMovies() {
+    return (
+      <>
+        {
+          movie.map(
+            (mov1, index) => {
+              let movUrl = '../movie/' + mov1._id;
+              return (
+                <>
+                  <Cards movie={mov1} />
+                </>
+              )
+            }
+          )
+        }
+      </>
     );
   }
 
- export default MovieList;
+
+  return (
+    <>
+      <br />
+      <br />
+      <br />
+      <Slider />
+      {DisplayMovies()}
+
+    </>
+  );
+}
+
+export default MovieList;

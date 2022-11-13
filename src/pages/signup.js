@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import "../css/signup.css";
-import userEvent from "@testing-library/user-event";
+import { Link, Navigate } from "react-router-dom";
 
 function Signup() {
 
@@ -14,6 +14,7 @@ function Signup() {
         dob: "",
     })
     const [ResponseStatus, setResponseStatus] = useState();
+    const [signedUp, setSignup] = useState(false);
 
     const handler = e => {
         const { name, value } = e.target;
@@ -24,26 +25,14 @@ function Signup() {
         console.log(user);
     }
     const try_login = async () => {
-        if(user.username && user.dob && user.password === user.re_password && user.password && user.email){
+        if(user.username && user.password === user.re_password && user.password && user.email){
             
-            // const user_check_url = `http://localhost:9000/user/${user.username.toString()}`;
-            // console.log(user_check_url);
-            // await axios.get(user_check_url).then(res=>setResponseStatus(res.data));
-            // console.log(ResponseStatus);
-            // if(ResponseStatus=='fail'||!ResponseStatus){
                 const url = 'http://localhost:9000/user/signup';
                 const {username, email, dob, password} = user
                 await axios.post(url, user).then(res=>setResponseStatus(res.data));
-                swal('Great!', ResponseStatus, 'success');
-                // if(ResponseStatus=="success"){
-                //     swal('Great!','Signup Successful!!!','success');
-                // }
-                // else{
-                //     swal('Opps', 'Failed!!!', 'warning');
-                // }
-            // }else{
-            //     swal('Opps!', 'Username already exists!!', 'warning');
-            // }
+                swal('Great!', 'Account Created Successfully!', 'success');
+                setSignup(true);
+          
         }
         else if(user.re_password != user.password){
             swal('Opps!', 'Both passwords are not matching!', 'warning');
@@ -55,6 +44,9 @@ function Signup() {
 
     return (
         <>
+        {
+            signedUp ? <Navigate to="../login" />:<></>
+        }
         <br/><br/><br/>
             <div className="card-body">
             <h3 className="signup">Create Account</h3>
@@ -63,12 +55,12 @@ function Signup() {
             <label for="email">Email</label><br/>
             <input type="text" id="email" name="email"  placeholder="Your Email" onChange={handler}/>
             <label for="pwd">Password</label><br/>
-            <input type="password" id="pwd" name="password"  placeholder="Your Password" onChange={handler} /><br/>
+            <input type="password" id="password" name="password"  placeholder="Your Password" onChange={handler} /><br/>
             <label for="rpwd">Re-Enter Password</label><br/>
-            <input type="password" id="rpwd" name="repassword"  placeholder="Re-enter Your Password" onChange={handler}/><br/>
+            <input type="password" id="re_password" name="re_password"  placeholder="Re-enter Your Password" onChange={handler}/><br/>
             <button className="button" value={"Create Your Account"} onClick={try_login}>Create Your Account</button>
             <br/><br/>
-            <p>Already have account?<a href="/login"> Sign in</a></p>
+            <p>Already have account?<Link to="/login"> Sign in</Link></p>
             </div>
          
         </>

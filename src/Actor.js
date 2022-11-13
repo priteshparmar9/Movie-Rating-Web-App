@@ -9,8 +9,9 @@ import Error from "./error";
 import "./css/actor.css"
 import MovieListActor from "./ActorInMovie";
 
-function Actor() {
-    const [actor, setActor] = useState(null);
+function Actor(props) {
+    let actor = props.actor;
+    let setActor = props.setActor;
     const [loading, setLoad] = useState(true);
     const { id } = useParams();
 

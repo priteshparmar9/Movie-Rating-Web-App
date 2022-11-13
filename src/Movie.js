@@ -13,24 +13,13 @@ function Movie() {
 
     const [movie, setMovie] = useState(null);
     const [reviews, setReviews] = useState(null);
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(0.0);
     const [rev, setRev] = useState(true);
     const [loading, setLoad] = useState(true);
 
 
-    function calculateRating() {
-        let n = 0, sum = 0;
-        for (let review in reviews) {
-            n++;
-            sum += review.rating;
-        }
-        if (n) sum /= n;
-        setRating(n);
-    }
-
     let url = `http://localhost:9000/movie/${id}`;
     useEffect(
-        // console.log()
         async () => {
             let Actors = new Array();
             let fetchData = async () => {
@@ -49,11 +38,11 @@ function Movie() {
 
                 await axios.get(url).then(
                     (response) => {
-                        setReviews(response.data);
+                        setReviews(response.data.reviews);
+                        setRating(response.data.rating);
                         console.log("Review is : " + reviews)
-                        // calculateRating(reviews);
                         console.log("rating is " + rating);
-                        console.log(reviews);
+                        console.log(rating);
                     }
                 ).catch(
                     console.log("Error")
@@ -63,7 +52,6 @@ function Movie() {
             fetchData();
         }, []
     )
-
     setTimeout(
         () => {
             setLoad(false);
@@ -72,11 +60,6 @@ function Movie() {
 
 
     let ShowRating = () => {
-        console.log("Show Ratting Called!!!!!!!!!!!!1111");
-        setTimeout(() => {
-            console.log(reviews);
-        }, 2000);
-
         if (window.localStorage.getItem('isLoggedIn')) {
             return (
                 <StarRating id={id} />
@@ -106,7 +89,7 @@ function Movie() {
     return (
 
         <>
-            {calculateRating}
+
             {
                 movie
                     ?
@@ -144,26 +127,9 @@ function Movie() {
                                             )
                                         }
                                     </div>
-                                    <div style={{ marginTop: "1rem", marginLeft: "15.5rem" }}>
-                                        Rating : {rating}⭐
-                                    </div>
                                     <div className="movie_cast" style={{ marginTop: "1.5rem", marginLeft: "16rem" }}>
                                         <span style={{ color: "white", fontSize: "1.5rem" }}>Cast: </span>
-                                        {/* {
-                                            newActors?
-                                            newActors.map(
-                                                (actor) => {
-                                                    // DisplayName()
-                                                    let castUrl = '../cast/' + actor;
-                                                    return (
-                                                        <a href={castUrl}>
-                                                            <span className="cast">{actor} </span>
-                                                        </a>
-                                                    )
-                                                }
-                                            ):
-                                            <></>
-                                        } */
+                                        {
                                             movie[0].cast.map(
                                                 (c) => {
                                                     console.log(c);
@@ -171,9 +137,7 @@ function Movie() {
                                                     return (
                                                         <a href={castUrl}>
                                                             <span className="cast">{c.name} </span>
-                                                            
                                                         </a>
-
                                                     )
                                                 }
                                             )
@@ -187,6 +151,41 @@ function Movie() {
                                     <div className="movie_writer" style={{ marginTop: "1rem", marginLeft: "16rem" }}>
                                         <span style={{ color: "white", fontSize: "1.5rem" }}>Writer: </span>
                                         <span style={{ color: "white", fontSize: "1.5rem" }}>{movie[0].writer}</span>
+                                    </div>
+                                    <div className="rating" style={{ marginTop: "1rem", marginLeft: "16rem" }}>
+                                        <span style={{ color: "white", fontSize: "1.5rem" }}>Rating: </span>
+                                        <span style={{ color: "white", fontSize: "1.5rem" }}>
+                                            
+                                            
+                                            {
+                                                (rating)?
+                                                <>
+                                                    {rating.toFixed(1)} ⭐ / 10 
+                                                </>:
+                                                <>
+                                                    Be the first to review
+                                                </>
+                                            }    
+                                        </span>
+                                    </div>
+                                    <div className="duration" style={{ marginTop: "1rem", marginLeft: "16rem" }}>
+                                        <span style={{ color: "white", fontSize: "1.5rem" }}>{
+                                            (movie[0].type == "Movie") ?
+                                                <>
+                                                    Duration:
+                                                </> :
+                                                <>
+                                                    No of Episodes:
+                                                </>
+                                        } </span>
+                                        <span style={{ color: "white", fontSize: "1.5rem" }}>{movie[0].duration} {
+                                            (movie[0].type == "Movie") ?
+                                                <>
+                                                    mins
+                                                </> :
+                                                <>
+                                                </>
+                                        }</span>
                                     </div>
                                 </div>
                             </div>

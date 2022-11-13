@@ -19,13 +19,11 @@ function Actor() {
             function fetchData() {
                 axios.get(url).then(
                     (response) => {
-
                         setActor(response.data);
-
                         console.log(actor);
                     }
                 ).catch(
-                    console.log('Error')
+                    fetchData()
                 )
             }
             fetchData();

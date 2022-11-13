@@ -7,9 +7,11 @@ import axios from "axios";
 import './css/movieList.css';
 import Error from "./error";
 
-const MovieListFind = () => {
+const MovieListFind = (props) => {
     const { query } = useParams();
+    let setQuery = props.setQuery;
     const [movie, setMovie] = useState([]);
+    // setQuery("");
 
     let url = 'http://localhost:9000/movie/find/' + query;
     useEffect(
@@ -35,7 +37,12 @@ const MovieListFind = () => {
     function DisplayMovies() {
         return (
             <>
-                <p>
+                <p style={{
+                    marginTop: "5rem",
+                    color: "white",
+                    marginLeft: "1rem",
+                    marginBottom: "-1rem"
+                }}>
                     Showing Results for : {query}
                 </p>
                 {

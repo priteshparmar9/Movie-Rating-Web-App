@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
+import { Navigate } from "react-router-dom";
 import swal from "sweetalert";
 
 
@@ -30,6 +31,8 @@ const StarRating = (props) => {
     // const {username, mov, rating, review } = REV;
     await axios.post(url, REV).then(res => setResponseStatus(res.data));
     swal('Yay!!', 'Your rating/review has been received!', 'success');
+    let url1 = "/movie" + movieId;
+    
   }
 
   return (
@@ -39,28 +42,36 @@ const StarRating = (props) => {
       }}>
         Give Rating
       </h1>
-      {[...Array(10)].map((star, i) => {
-        const ratingValue = i + 1;
-        return (
-          <label>
-            <input
-              type="radio"
-              name="rating"
-              value={ratingValue}
-              onClick={() => setRating(ratingValue)}
-            />
-            <FaStar
-              className="star"
-              color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
-              size={50}
-              onMouseEnter={() => setHover(ratingValue)}
-              onMouseLeave={() => setHover(null)}
-            />
-          </label>
-        );
-      })}
+      <div className="container" style={{
+        marginLeft: "8rem"
+      }}>
+
+        {[...Array(10)].map((star, i) => {
+          const ratingValue = i + 1;
+          return (
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value={ratingValue}
+                onClick={() => setRating(ratingValue)}
+              />
+              <div>
+
+                <FaStar
+                  className="star"
+                  color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                  size={50}
+                  onMouseEnter={() => setHover(ratingValue)}
+                  onMouseLeave={() => setHover(null)}
+                />
+              </div>
+            </label>
+          );
+        })}
+      </div>
       <div>
-        
+
         <textarea id="review" value={review} onChange={handler} placeholder="Write Review" style={{
           marginTop: "2rem",
           height: "20rem",
@@ -68,7 +79,13 @@ const StarRating = (props) => {
         }}>
         </textarea>
       </div>
-      <button onClick={giveReview} style={{ color: 'white' }}>Rate</button>
+      <div className="container" style={{
+        marginLeft: "14rem",
+        marginTop: "1rem"
+      }}>
+
+        <button onClick={giveReview} style={{ color: 'white', marginBottom: '3rem' }}>Rate</button>
+      </div>
     </div>
   );
 };

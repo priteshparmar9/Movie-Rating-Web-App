@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-import  { Navigate } from 'react-router-dom';
+import  { Link, Navigate } from 'react-router-dom';
 
 
-function Login() {
+function Login(props) {
 
     const [user, setUser] = useState({
         username: "",
         password: "",
     })
 
-    const [isLoggedIn, setLogin] = useState(false);
+    var isLoggedIn = props.isLoggedIn;
+    var isAdmin = props.isAdmin;
+    var setLogin = props.setLogin;
+    var setAdmin = props.setAdmin;
 
     const handler = e => {
         const { name, value } = e.target;
@@ -31,6 +34,9 @@ function Login() {
                     setLogin(true);
                     window.localStorage.setItem('isLoggedIn', true);
                     window.localStorage.setItem('username', user.username);
+                    if(user.username == "admin"){
+                        setAdmin(true);
+                    }
                     swal('Great!','Login Successful!!!','success');
                 }
                 else{
@@ -62,7 +68,7 @@ function Login() {
             <input type="password"  id="pwd" name="password"  placeholder="Enter Your Password" value={user.password} onChange={handler} /><br/>
             <button className="button" value={"Login"} onClick={try_login}>Sign in</button>
             <br/><br/>
-            <p>New to imdb?<a href="/signup"> Sign up</a></p>
+            <p>New to imdb?<Link to="/signup"> Sign up</Link></p>
             {user.name}
             </div>
          

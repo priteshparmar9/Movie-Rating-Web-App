@@ -29,8 +29,6 @@ router.post('/addmovie', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const movies = await Movie.find();
-        // var myJsonString = JSON.stringify(movies);
-        // res.
         res.json(movies);
     }
     catch (error) {

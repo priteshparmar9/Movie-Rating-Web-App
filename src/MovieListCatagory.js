@@ -18,18 +18,15 @@ const MovieListCat = (props) => {
             function fetchData() {
                 axios.get(url).then(
                     (response) => {
-
                         setMovie(response.data);
-
                         console.log(movie);
-
                     }
                 ).catch(
                     console.log('Error')
                 )
             }
             fetchData();
-        }, []
+        }
     )
 
     function DisplayMovies() {
@@ -40,10 +37,9 @@ const MovieListCat = (props) => {
                 <br />
 
                 {
-                    movie.length != 0?
+                    movie ?
                     movie.map(
-                        (mov1, index) => {
-                            let movUrl = '../movie/' + mov1._id;
+                        (mov1) => {
                             // <li>{mov1.title}</li>
                             return (
                                 <>

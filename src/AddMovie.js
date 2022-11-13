@@ -33,7 +33,7 @@ function AddMovie() {
         { value: 'Horror', label: 'Horror' },
         { value: 'Thriller', label: 'Thriller' },
         { value: 'Adventure', label: 'Adventure' },
-        { value: 'Fantacy', label: 'Fantacy' },
+        { value: 'Fantasy', label: 'Fantasy' },
         { value: 'Comedy', label: 'Comedy' },
         { value: 'Romantic', label: 'Romantic' },
         { value: 'Sci-Fi', label: 'Sci-Fi' },
@@ -180,23 +180,25 @@ function AddMovie() {
             <div
                 style={{
                     textAlign: 'center',
+                    marginTop: "5rem"
                 }}
             >
                 <h1 style={{
-                    color: 'yellow'
+                    color: "rgb(245, 166, 20)"
                 }}>Add Movie</h1>
+
                 <div className="container">
                     <div className="row">
                         <div className="col">
-                            <input type='text' style={{ borderRadius: '10px', width: '100%' }} id="title" name="title" placeholder="Movie/WebSeries Name" onChange={handler}/>
+                            <input type='text' style={{ borderRadius: '10px', width: '100%',height:"3rem" ,fontSize:"1rem" }} id="title" name="title" placeholder="Movie/WebSeries Name" onChange={handler}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
-                            <input type='text' style={{ borderRadius: '10px', width: '100%' }} placeholder="Writer Name" id="writer" name="writer" onChange={handler}/>
+                            <input type='text' style={{ borderRadius: '10px', width: '100%', height:"3rem" ,fontSize:"1rem"}} placeholder="Writer Name" id="writer" name="writer" onChange={handler}/>
                         </div>
                         <div className="col">
-                            <input type='text' style={{ borderRadius: '10px', width: '100%' }} placeholder="Director Name" id="director" name="director" onChange={handler}/>
+                            <input type='text' style={{ borderRadius: '10px', width: '100%', height:"3rem" ,fontSize:"1rem"}} placeholder="Director Name" id="director" name="director" onChange={handler}/>
                         </div>
                         <div className="col">
                             {DisplayTypes()}
@@ -204,34 +206,34 @@ function AddMovie() {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <input type='text' style={{ borderRadius: '10px', width: '100%' }} id="poster" name="poster" onChange={handler} placeholder="Poster"/>
+                            <input type='text' style={{ borderRadius: '10px', width: '100%', height:"3rem",fontSize:"1rem"}} id="poster" name="poster" onChange={handler} placeholder="Poster"/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
-                            <input type='text' style={{ borderRadius: '10px', width: '100%' }} id="trailer" name="trailer" onChange={handler} placeholder="Trailer"/>
+                            <input type='text' style={{ borderRadius: '10px', width: '100%', height:"3rem", fontSize:"1rem"  }} id="trailer" name="trailer" onChange={handler} placeholder="Trailer"/>
                         </div>
                         <div>
-                            <input type='number' min='30' max='240' style={{ borderRadius: '10px', width: '400px' }} id="duration" name="duration" onChange={handler} placeholder="Duration (in Minutes)"/>
+                            <input type='number' min='30' max='240' style={{ borderRadius: '10px', width: '400px',height:"3rem", marginRight:"1rem" ,fontSize:"1rem" }} id="duration" name="duration" onChange={handler} placeholder="Duration (in Minutes)"/>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row" style={{marginBottom: "1rem"}}>
                     <div className="col">
                             {DisplayGenres()}
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row" style={{marginBottom: "1rem"}}>
                         <div className="col">
                             {DisplayCast()}
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
-                            <textarea style={{ borderRadius: '10px', width: '100%' }} placeholder="Description" id="description" name="description" onChange={handler}/>
+                            <textarea style={{ borderRadius: '10px', width: '100%',fontSize:"1rem" , paddingLeft:".5rem" }} placeholder="Description" id="description" name="description" onChange={handler}/>
                         </div>
                     </div>
                 </div>
-                <button className="button" value='Register' style={{ marginTop: "1rem", marginBottom: "2rem" }} onClick={addMovieToDatabase}>Add Movie</button>
+                <button className="button" value='Register' style={{ marginTop: "1rem", marginBottom: "1rem", width:"50%" }} onClick={addMovieToDatabase}>Add Movie</button>
             </div>
 
     )

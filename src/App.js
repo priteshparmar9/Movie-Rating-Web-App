@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import './css/StarRating.css';
 import './css/Navbar.css';
@@ -28,23 +28,28 @@ import Footer1 from './Footer';
 
 function App() {
 
+  const [isLoggedIn, setLogin] = useState(false);
+  const [isAdmin, setAdmin] = useState(false);
+  const [query, setQuery] = useState();
+  const [actor, setActor] = useState(null);
+
 
   return (
     <div className="App">
 
       <BrowserRouter>
-        <Navbar />
+        <Navbar isLoggedIn = {isLoggedIn} isAdmin = {isAdmin} setAdmin = {setAdmin} setLogin={setLogin} query={query} setQuery={setQuery} />
         <Routes>
 
           <Route index element={<Content />}></Route>
           {/* <Route index element={<Home />} /> */}
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<Login isLoggedIn = {isLoggedIn} isAdmin = {isAdmin} setAdmin = {setAdmin} setLogin={setLogin} />} />
           <Route path="signup" element={<Signup />} />
           <Route path="addMovie" element={<AddMovie />} />
           <Route path="addCast" element={<AddCast />} />
           <Route path="*" element={<Error />} />
           <Route path="movie/:id" element={<Movie />} />
-          <Route path="cast/:id" element={<Actor />} />
+          <Route path="cast/:id" element={<Actor actor={actor} setActor={setActor} />} />
           <Route path="movies" element={<MovieListMovies />} />
           <Route path="webseries" element={<MovieListWeb />} />
           <Route path="catagory/Drama" element={<MovieListCaT catagory="Drama"/>}/>
@@ -57,7 +62,7 @@ function App() {
           <Route path="catagory/Fantacy" element={<MovieListCaT catagory="Fantacy"/>}/>
           <Route path="catagory/Adventure" element={<MovieListCaT catagory="Adventure"/>}/>
           <Route path="catagory/Action" element={<MovieListCaT catagory="Action"/>}/>
-          <Route path="find/:query" element={<MovieListFind />} />
+          <Route path="find/:query" element={<MovieListFind query={query} />} setQuery={setQuery} />
 
         </Routes>
       </BrowserRouter>
