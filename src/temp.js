@@ -5,7 +5,7 @@ function UserAction() {
              alert(this.responseText);
          }
     };
-    xhttp.open("POST", "http://localhost:9000/movie/", true);
+    xhttp.open("POST", "https://moviebackend.onrender.com/movie/", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("Your JSON Data Here");
 }

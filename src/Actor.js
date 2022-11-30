@@ -15,7 +15,7 @@ function Actor(props) {
     const [loading, setLoad] = useState(true);
     const { id } = useParams();
 
-    let url = `http://localhost:9000/cast/${id}`;
+    let url = `https://moviebackend.onrender.com/cast/${id}`;
     useEffect(
         // console.log()
         () => {
