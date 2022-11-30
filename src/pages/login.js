@@ -33,11 +33,16 @@ function Login(props) {
                 if(status=="Login Successful!"){
                     setLogin(true);
                     window.localStorage.setItem('isLoggedIn', true);
-                    window.localStorage.setItem('username', user.username);
+                    window.localStorage.setItem('username', user.username.toString());
                     if(user.username == "admin"){
+                        window.localStorage.setItem('isAdmin', true);
                         setAdmin(true);
                     }
-                    swal('Great!','Login Successful!!!','success');
+                    swal({
+                        title: "Login Successful!",
+                        text: "Welcome "+window.localStorage.getItem('username') + " to MovieDB",
+                        icon: "success",
+                      });
                 }
                 else{
                     swal('Opps', 'Invalid Credentials!!!', 'warning');

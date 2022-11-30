@@ -44,7 +44,15 @@ function Slider() {
 
                </SwiperSlide>
                <SwiperSlide>
+                  <h1>
                   <img classsName="carousel" src={img2} alt="" />
+                  <Link to="movie/63730f696abc4fcd637fac01" style={{
+                        color: "white",
+                        marginLeft: "2rem"
+                     }}>
+                     Harry Potter and Deathly Hollow Part 2
+                     </Link>
+                  </h1>
                </SwiperSlide>
                <SwiperSlide>
                   <h1>

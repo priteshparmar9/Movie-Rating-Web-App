@@ -4,10 +4,12 @@ import Select from 'react-select'
 import axios from "axios";
 import '../src/App.css';
 import swal from "sweetalert";
+import { Navigate } from "react-router-dom";
 
 
 
-function AddMovie() {
+function AddMovie(props) {
+    const [isAdmin, setAdmin] = useState(props.isAdmin);
     const [movie, setMovie] = useState(
         {
             title: "",
@@ -183,6 +185,9 @@ function AddMovie() {
                     marginTop: "5rem"
                 }}
             >
+                {
+                    isAdmin ? <></>:<Navigate to="/" />
+                }
                 <h1 style={{
                     color: "rgb(245, 166, 20)"
                 }}>Add Movie</h1>

@@ -4,6 +4,7 @@ import { Navigate, redirect, useLinkClickHandler } from "react-router-dom"
 import Select from 'react-select';
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import swal from 'sweetalert';
 
 
 
@@ -55,6 +56,12 @@ function NavBar(props) {
             window.localStorage.removeItem('username')
             setLogin(false);
             setAdmin(false);
+            swal(
+                {
+                    title: "Logout successful!",
+                    icon: "success",
+                  }
+            )
         }
 
         return (
@@ -80,9 +87,9 @@ function NavBar(props) {
         <div>
             <nav className='fixed-top'>
 
-                <Link className="navbar-brand" to="/">
+                <a className="navbar-brand" href="/">
                     <img className='logo' src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png" width="30" height="30" alt="" />
-                </Link>
+                </a>
 
                 <div className='search_box'>
                     <input type="search" placeholder='Search...' onChange={handler}></input>

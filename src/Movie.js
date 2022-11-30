@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import Error from "./error";
 import StarRating from './StarRating';
 import "./css/movie.css";
+import Footer1 from "./Footer";
 
 function Movie() {
     const { id } = useParams();
@@ -75,7 +76,7 @@ function Movie() {
                     Want to give review?
 
 
-                    <a href="../login" style={{
+                    <a to="../login" style={{
                         color: "blue",
 
                         marginBottom: "1rem"
@@ -86,10 +87,9 @@ function Movie() {
             </>
         )
     }
+
     return (
-
         <>
-
             {
                 movie
                     ?

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import './css/StarRating.css';
 import './css/Navbar.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './components/header/header';
-import Header from './components/header/header';
-import MovieCard from './MovieCard';
 import Signup from './pages/signup';
 import Navbar from './components/NavigationBar/NavBar';
 import Login from './pages/login';
@@ -14,16 +12,13 @@ import Movie from './Movie';
 import Error from './error';
 import AddCast from './AddCast';
 import Content from './Content';
-import StarRating from './StarRating';
-import Slider from './Slider';
-import MovieList from './MovieList';
+import Footer1 from './Footer';
 import Actor from './Actor';
 import MovieListCaT from './MovieListCatagory';
 import MovieListFind from './findMovie';
 import MovieListMovies from './OnlyMovie';
 import MovieListWeb from './OnlyWebSeries';
-import Footer from './Footer';
-import Footer1 from './Footer';
+import Favicon from 'react-favicon';
 
 
 function App() {
@@ -33,10 +28,20 @@ function App() {
   const [query, setQuery] = useState();
   const [actor, setActor] = useState(null);
 
+  useEffect(
+    () => {
+      document.title = "Index | MovieDB ";
+      if(window.localStorage.getItem('username')=="admin"){
+        setAdmin(true);
+      }
+    }, []
+  )
 
   return (
-    <div className="App">
-
+    <div className="App" style={{
+      backgroundColor: "black"
+    }}>
+      <Favicon url='https://freepngimg.com/thumb/popcorn/22995-2-popcorn-hd.png' />
       <BrowserRouter>
         <Navbar isLoggedIn = {isLoggedIn} isAdmin = {isAdmin} setAdmin = {setAdmin} setLogin={setLogin} query={query} setQuery={setQuery} />
         <Routes>
@@ -45,8 +50,8 @@ function App() {
           {/* <Route index element={<Home />} /> */}
           <Route path="login" element={<Login isLoggedIn = {isLoggedIn} isAdmin = {isAdmin} setAdmin = {setAdmin} setLogin={setLogin} />} />
           <Route path="signup" element={<Signup />} />
-          <Route path="addMovie" element={<AddMovie />} />
-          <Route path="addCast" element={<AddCast />} />
+          <Route path="addMovie" element={<AddMovie isAdmin={isAdmin}/>} />
+          <Route path="addCast" element={<AddCast isAdmin={isAdmin}/>} />
           <Route path="*" element={<Error />} />
           <Route path="movie/:id" element={<Movie />} />
           <Route path="cast/:id" element={<Actor actor={actor} setActor={setActor} />} />
@@ -63,10 +68,9 @@ function App() {
           <Route path="catagory/Adventure" element={<MovieListCaT catagory="Adventure"/>}/>
           <Route path="catagory/Action" element={<MovieListCaT catagory="Action"/>}/>
           <Route path="find/:query" element={<MovieListFind query={query} />} setQuery={setQuery} />
-
         </Routes>
       </BrowserRouter>
-      {/* <Footer1 /> */}
+  
 
     </div>
   );

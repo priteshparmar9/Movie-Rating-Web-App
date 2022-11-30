@@ -30,7 +30,14 @@ const StarRating = (props) => {
     let url = "http://localhost:9000/review/";
     // const {username, mov, rating, review } = REV;
     await axios.post(url, REV).then(res => setResponseStatus(res.data));
-    swal('Yay!!', 'Your rating/review has been received!', 'success');
+    swal({
+      title: "Thankyou!",
+      text: "Your review has been received! Please refresh page to see the review.",
+      icon: "success",
+      onClick: ()=>{
+        window.location.reload()
+      }
+    });
     let url1 = "/movie" + movieId;
     
   }

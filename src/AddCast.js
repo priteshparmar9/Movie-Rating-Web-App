@@ -2,9 +2,11 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
+import { Navigate } from "react-router-dom";
 
 
-function AddCast(){
+function AddCast(props){
+    const [isAdmin, setAdmin] = useState(props.isAdmin);
     const [cast, setCast] = useState(
         {
               name: "",
@@ -38,6 +40,9 @@ function AddCast(){
     }
     return(
         <div className="add_Actordetails" style={{marginLeft: "2.5rem", marginTop: "6rem", color:"white", textAlign:"center" }}>
+            {
+                isAdmin?<></>:<Navigate to="/" />
+            }
             <h1>Add Cast</h1>
             <label for="name" style={{marginRight:"17rem"}}>Name: </label><br/>
             < input type="text" id="name" name="name" value={cast.name}placeholder="Actor's Name" onChange={handler} style={{height:"2.5rem"}}/><br />

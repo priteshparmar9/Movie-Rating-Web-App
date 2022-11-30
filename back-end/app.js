@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
-const url = "mongodb://localhost/iMDB"
+const url = "mongodb+srv://pritesh:BNgExd7PQmZjgvLH@cluster0.jis9bxg.mongodb.net/test";
 const app = express();
 
 const cors = require('cors');

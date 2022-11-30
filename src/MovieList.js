@@ -39,7 +39,9 @@ const MovieList = () => {
               let movUrl = '../movie/' + mov1._id;
               return (
                 <>
+                
                   <Cards movie={mov1} />
+                
                 </>
               )
             }
@@ -51,14 +53,13 @@ const MovieList = () => {
 
 
   return (
-    <>
-      <br />
-      <br />
-      <br />
+    <div style={{marginTop:"5rem"}}>
       <Slider />
+      <div style={{marginLeft:"5rem"}}>
       {DisplayMovies()}
+      </div>
 
-    </>
+    </div>
   );
 }
 
