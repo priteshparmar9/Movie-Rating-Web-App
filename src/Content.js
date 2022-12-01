@@ -9,7 +9,7 @@ import MovieList from "./MovieList";
 function Content() {
   const [movie, setMovie] = useState([]);
 
-  let url = 'http://localhost:9000/movie/';
+  let url = 'https://moviebackend.onrender.com/movie/';
   useEffect(
     () => {
       function fetchData() {

@@ -13,7 +13,7 @@ const MovieListFind = (props) => {
     const [movie, setMovie] = useState([]);
     // setQuery("");
 
-    let url = 'http://localhost:9000/movie/find/' + query;
+    let url = 'https://moviebackend.onrender.com/movie/find/' + query;
     useEffect(
         () => {
             function fetchData() {

@@ -27,7 +27,7 @@ function Signup() {
     const try_login = async () => {
         if(user.username && user.password === user.re_password && user.password && user.email){
             
-                const url = 'http://localhost:9000/user/signup';
+                const url = 'https://moviebackend.onrender.com/user/signup';
                 const {username, email, dob, password} = user
                 await axios.post(url, user).then(res=>setResponseStatus(res.data));
                 swal('Great!', 'Account Created Successfully!', 'success');

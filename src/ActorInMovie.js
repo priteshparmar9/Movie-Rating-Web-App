@@ -12,7 +12,7 @@ const MovieListActor = (props) => {
     console.log(id);
     const [movie, setMovie] = useState([]);
 
-    let url = 'http://localhost:9000/movie/castInMovie/';
+    let url = 'https://moviebackend.onrender.com/movie/castInMovie/';
     useEffect(
         () => {
             function fetchData() {

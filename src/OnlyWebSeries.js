@@ -10,7 +10,7 @@ import Slider from "./Slider";
 const MovieListWeb =() =>{
    const [movie, setMovie] = useState([]);
 
-  let url = 'http://localhost:9000/movie/allwebseries';
+  let url = 'https://moviebackend.onrender.com/movie/allwebseries';
   useEffect(
     () => {
       document.title = 'WebSeries | MovieDB';

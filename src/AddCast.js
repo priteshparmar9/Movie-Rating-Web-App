@@ -27,7 +27,7 @@ function AddCast(props){
     }
     
     const addCastToDatabase = async () => {
-        const url = 'http://localhost:9000/cast/addCast';
+        const url = 'https://moviebackend.onrender.com/cast/addCast';
                 const {name, dob, description, image} = cast
                 await axios.post(url, cast).then(res=>setResponseStatus(res.data));
                 swal('Yay!!','Actor/Actress added to the database','success');

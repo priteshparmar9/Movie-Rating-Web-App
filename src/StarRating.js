@@ -27,7 +27,7 @@ const StarRating = (props) => {
       rating: rating,
       review: review
     }
-    let url = "http://localhost:9000/review/";
+    let url = "https://moviebackend.onrender.com/review/";
     // const {username, mov, rating, review } = REV;
     await axios.post(url, REV).then(res => setResponseStatus(res.data));
     swal({

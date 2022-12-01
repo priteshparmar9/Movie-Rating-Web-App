@@ -10,7 +10,7 @@ import Slider from "./Slider";
 const MovieListMovies =() =>{
    const [movie, setMovie] = useState([]);
 
-  let url = 'http://localhost:9000/movie/allmovies';
+  let url = 'https://moviebackend.onrender.com/movie/allmovies';
   useEffect(
     () => {
       document.title = 'Movies | MovieDB';

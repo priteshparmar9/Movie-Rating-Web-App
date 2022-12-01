@@ -19,7 +19,7 @@ function Movie() {
     const [loading, setLoad] = useState(true);
 
 
-    let url = `http://localhost:9000/movie/${id}`;
+    let url = `https://moviebackend.onrender.com/movie/${id}`;
     useEffect(
         async () => {
             let Actors = new Array();
@@ -35,7 +35,7 @@ function Movie() {
                     console.log('Error')
                 )
 
-                url = `http://localhost:9000/review/movId/${id}`;
+                url = `https://moviebackend.onrender.com/review/movId/${id}`;
 
                 await axios.get(url).then(
                     (response) => {

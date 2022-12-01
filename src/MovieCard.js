@@ -14,7 +14,7 @@ function MovieCard() {
         // }
         // const fetch = require('node-fetch');
 
-        const url = 'http://localhost:9000/movie';
+        const url = 'https://moviebackend.onrender.com/movie';
         axios.get(url).then(res => { setMovies(res.data); console.log(movies) });
         // fetch(url)
         //     .then(res => res.json())

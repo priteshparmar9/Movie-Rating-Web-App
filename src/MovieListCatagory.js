@@ -11,7 +11,7 @@ const MovieListCat = (props) => {
     const catagory = props.catagory;
     const [movie, setMovie] = useState([]);
 
-    let url = 'http://localhost:9000/movie/genreMovie/'+catagory;
+    let url = 'https://moviebackend.onrender.com/movie/genreMovie/'+catagory;
     useEffect(
         () => {
             document.title = catagory + ' Movies | MovieDB';

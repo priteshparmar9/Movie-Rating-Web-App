@@ -3,7 +3,7 @@ import { useState } from "react";
 function Movie(props) {
     const [movies, setMovies] = useState;
     var queryMovie = props.movie;
-    const url = 'http://localhost:9000/movie/' + queryMovie;
+    const url = 'https://moviebackend.onrender.com/movie/' + queryMovie;
     useEffect(
         () => {
             let isMounted = true;

@@ -26,7 +26,7 @@ function Login(props) {
     }
     const try_login = async () => {
         if(user.username && user.password){
-            const url = 'http://localhost:9000/user/login';
+            const url = 'https://moviebackend.onrender.com/user/login';
             var status;
             try{
                 await axios.post(url, user).then(res=>status = res.data);

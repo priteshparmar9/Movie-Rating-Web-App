@@ -63,7 +63,7 @@ function AddMovie(props) {
         })
     }
 
-    let url = 'http://localhost:9000/cast/';
+    let url = 'https://moviebackend.onrender.com/cast/';
     useEffect(
         () => {
             let isMounted = true;
@@ -172,7 +172,7 @@ function AddMovie(props) {
     }
 
     const addMovieToDatabase = async () => {
-        const url = 'http://localhost:9000/movie/addmovie';
+        const url = 'https://moviebackend.onrender.com/movie/addmovie';
         const { title, genre, writer, director, cast, poster, trailer, description } = movie
         await axios.post(url, movie).then(res => setResponseStatus(res.data));
         swal('Yay!!', 'Movie added to the database', 'success');
