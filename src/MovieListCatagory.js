@@ -4,66 +4,55 @@ import Cards from "./Card";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import './css/movieList.css';
+import "./css/movieList.css";
 import Error from "./error";
 
 const MovieListCat = (props) => {
-    const catagory = props.catagory;
-    const [movie, setMovie] = useState([]);
+  const catagory = props.catagory;
+  const [movie, setMovie] = useState([]);
 
-    let url = 'https://moviebackend.onrender.com/movie/genreMovie/'+catagory;
-    useEffect(
-        () => {
-            document.title = catagory + ' Movies | MovieDB';
-            function fetchData() {
-                axios.get(url).then(
-                    (response) => {
-                        setMovie(response.data);
-                        console.log(movie);
-                    }
-                ).catch(
-                    console.log('Error')
-                )
-            }
-            fetchData();
-        }
-    )
-
-    function DisplayMovies() {
-        return (
-            <>
-                <br />
-                <br />
-                <br />
-
-                {
-                    movie ?
-                    movie.map(
-                        (mov1) => {
-                            // <li>{mov1.title}</li>
-                            return (
-                                <>
-                                    <Cards movie={mov1} />
-                                    {/* {mov1.title} */}
-                                </>
-                            )
-                        }
-                    ):
-                    <>
-                        <Error />
-                    </>
-                }
-            </>
-        );
+  let url = "https://moviebackend.onrender.com/movie/genreMovie/" + catagory;
+  useEffect(() => {
+    document.title = catagory + " Movies | MovieDB";
+    function fetchData() {
+      axios
+        .get(url)
+        .then((response) => {
+          setMovie(response.data);
+          console.log(movie);
+        })
+        .catch(console.log("Error"));
     }
+    fetchData();
+  });
 
-
+  function DisplayMovies() {
     return (
-        <>
-            {DisplayMovies()}
+      <div style={{ backgroundColor: "rgb(57, 62, 70)" }}>
+        <br />
+        <br />
+        <br />
 
-        </>
+        {movie ? (
+          movie.map((mov1) => {
+            // <li>{mov1.title}</li>
+            return (
+              <>
+                <Cards movie={mov1} />
+                {/* {mov1.title} */}
+              </>
+            );
+          })
+        ) : (
+          <>
+            <Error />
+          </>
+        )}
+      </div>
     );
-}
+  }
+
+  return <>{DisplayMovies()}</>;
+};
 
 export default MovieListCat;

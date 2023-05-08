@@ -54,11 +54,11 @@ const MovieListWeb =() =>{
 
   
     return(
-       <>
+       <div style={{backgroundColor: "rgb(57, 62, 70)"}}>
        <Slider />
         {DisplayMovies()}
         
-       </>
+       </div>
     );
   }
 
